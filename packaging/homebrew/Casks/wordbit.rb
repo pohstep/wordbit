@@ -1,7 +1,7 @@
 cask "wordbit" do
-  version "2.1.0"
+  version "2.2.0"
 
-  sha256 "14043ea0dad35a25752022083c632457bf8b94fb8e36b34d2af4d16e89de6100"
+  sha256 "REPLACE_WITH_SHA256"
   url "https://github.com/pohstep/wordbit/releases/download/v#{version}/Wordbit-#{version}.dmg"
 
   name "Wordbit"
@@ -18,7 +18,8 @@ cask "wordbit" do
 
   caveats <<~EOS
     Wordbit is unsigned. The first time you open it, macOS says it cannot verify the app.
-    Allow it once with "Open Anyway" in System Settings → Privacy & Security.
+    macOS 15 or newer: allow it once with "Open Anyway" in System Settings → Privacy & Security.
+    macOS 13–14: right-click the app and choose Open.
     Or, in Terminal: xattr -dr com.apple.quarantine "/Applications/Wordbit.app"
   EOS
 end

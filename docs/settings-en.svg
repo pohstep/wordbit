@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="520" viewBox="0 0 360 520">
+  <rect width="360" height="520" rx="22" fill="#F6F4EF"/>
+  <text x="180" y="28" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#6E6B7A">Screenshot placeholder</text>
+  <text x="24" y="58" font-family="Helvetica, sans-serif" font-size="15" font-weight="600" fill="#16151B">Settings · English</text>
+  <rect x="16" y="74" width="328" height="92" rx="14" fill="#FFFFFF" stroke="#E4E0D8"/>
+  <text x="28" y="98" font-family="Helvetica, sans-serif" font-size="13" font-weight="600" fill="#16151B">Language</text>
+  <text x="28" y="120" font-family="Helvetica, sans-serif" font-size="12" fill="#16151B">Automatic (follow Mac)</text>
+  <text x="28" y="142" font-family="PingFang SC, Hiragino Sans GB, Noto Sans CJK SC, Helvetica, sans-serif" font-size="11" fill="#4A4855">English · 简体中文</text>
+  <rect x="16" y="176" width="328" height="250" rx="14" fill="#FFFFFF" stroke="#E4E0D8"/>
+  <text x="28" y="202" font-family="Helvetica, sans-serif" font-size="13" font-weight="600" fill="#16151B">About</text>
+  <text x="28" y="226" font-family="Helvetica, sans-serif" font-size="13" fill="#16151B">Wordbit 2.2.0</text>
+  <rect x="28" y="242" width="150" height="26" rx="8" fill="#F3EFE6"/>
+  <text x="40" y="259" font-family="Helvetica, sans-serif" font-size="11" fill="#16151B">Check for updates</text>
+  <text x="28" y="288" font-family="Helvetica, sans-serif" font-size="12" fill="#4A4855">You're up to date</text>
+  <text x="28" y="310" font-family="Helvetica, sans-serif" font-size="12" fill="#16151B">Version X is available</text>
+  <rect x="28" y="322" width="88" height="24" rx="8" fill="#F3EFE6"/>
+  <text x="40" y="338" font-family="Helvetica, sans-serif" font-size="11" fill="#16151B">Download</text>
+  <text x="28" y="366" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#4A4855">brew upgrade --cask wordbit</text>
+  <rect x="28" y="382" width="130" height="26" rx="8" fill="#F3EFE6"/>
+  <text x="40" y="399" font-family="Helvetica, sans-serif" font-size="11" fill="#16151B">Reset progress</text>
+  <text x="24" y="470" font-family="Helvetica, sans-serif" font-size="11" fill="#6E6B7A">Open at login stays off until you turn it on.</text>
+  <text x="24" y="492" font-family="Helvetica, sans-serif" font-size="11" fill="#6E6B7A">Words stay English. Meanings are in Chinese.</text>
+</svg>

@@ -6,17 +6,6 @@ import Foundation
 enum AppTab: Hashable {
     case today, review, quiz, pictures, saved, settings
 
-    var title: String {
-        switch self {
-        case .today: return "Today"
-        case .review: return "Review"
-        case .quiz: return "Quiz"
-        case .pictures: return "Pictures"
-        case .saved: return "Saved"
-        case .settings: return "Settings"
-        }
-    }
-
     var symbol: String {
         switch self {
         case .today: return Theme.CardKind.word.symbol
@@ -62,6 +51,8 @@ struct SettingsState: Codable, Equatable {
     /// Daily reminder clock time. Ignored until dailyReminder is on.
     var reminderHour: Int = 8
     var reminderMinute: Int = 0
+    /// "auto", "en", or "zh-Hans". "auto" follows the Mac's first language.
+    var interfaceLanguage: String = "auto"
 
     init() {}
 
@@ -77,6 +68,8 @@ struct SettingsState: Codable, Equatable {
         let minute = try container.decodeIfPresent(Int.self, forKey: .reminderMinute) ?? 0
         reminderHour = min(23, max(0, hour))
         reminderMinute = min(59, max(0, minute))
+        let storedLanguage = try container.decodeIfPresent(String.self, forKey: .interfaceLanguage) ?? "auto"
+        interfaceLanguage = InterfaceLanguage.normalized(storedLanguage)
     }
 
     func encode(to encoder: Encoder) throws {
@@ -88,12 +81,21 @@ struct SettingsState: Codable, Equatable {
         try container.encode(timeZoneChoice, forKey: .timeZoneChoice)
         try container.encode(reminderHour, forKey: .reminderHour)
         try container.encode(reminderMinute, forKey: .reminderMinute)
+        try container.encode(interfaceLanguage, forKey: .interfaceLanguage)
     }
 
     private enum CodingKeys: String, CodingKey {
         case showChinese, voiceIdentifier, speechRate, dailyReminder
-        case timeZoneChoice, reminderHour, reminderMinute
+        case timeZoneChoice, reminderHour, reminderMinute, interfaceLanguage
     }
+}
+
+enum UpdateState: Equatable {
+    case idle
+    case checking
+    case upToDate
+    case available(version: String, page: String)
+    case failed
 }
 
 struct FlagState: Codable, Equatable {
@@ -164,6 +166,8 @@ final class AppModel: ObservableObject {
     @Published var pictures: PictureRound?
     @Published var voices: [VoiceChoice] = []
     @Published var savedDetail: String?
+    @Published var updateState: UpdateState = .idle
+    @Published var resetNotice: String = ""
     private var loadedDay = ""
 
     init(library: WordLibrary) {
@@ -178,24 +182,19 @@ final class AppModel: ObservableObject {
 
     // MARK: Launch
 
-    func bootstrap(login: LoginItem) {
+    func bootstrap() {
         load()
         Shanghai.apply(disk.settings.timeZoneChoice)
         // New users start fresh: only today's word is marked seen.
+        // Open at login stays off until the user turns it on in Settings.
         noteToday()
-        if !disk.flags.didRegisterLoginItem {
-            login.set(true)
-            disk.flags.didRegisterLoginItem = true
-            UserDefaults.standard.set(true, forKey: "launchAtLogin")
-        }
         loadedDay = Shanghai.key(Date())
         save()
         prepareVoices()
-        Reminder.restoreIfAuthorized(
-            enabled: disk.settings.dailyReminder,
-            hour: disk.settings.reminderHour,
-            minute: disk.settings.reminderMinute
-        )
+        let reminderOn = disk.settings.dailyReminder
+        Reminder.restoreIfAuthorized(enabled: reminderOn) { [weak self] in
+            self?.rescheduleReminderIfNeeded()
+        }
     }
 
     func show(_ tab: AppTab) {
@@ -223,7 +222,7 @@ final class AppModel: ObservableObject {
 
     var displayedEntry: WordEntry { library.entry(on: displayedDate) }
 
-    var dateLabel: String { Shanghai.englishDate(displayedDate) }
+    var dateLabel: String { Shanghai.displayDate(displayedDate, locale: interfaceLocale) }
 
     func shiftDay(_ delta: Int) {
         let next = dayOffset + delta
@@ -292,9 +291,9 @@ final class AppModel: ObservableObject {
     func weekDots() -> [WeekDot] {
         let today = Shanghai.startOfDay(Date())
         let monday = Shanghai.addDays(-Shanghai.mondayIndex(today), to: today)
-        let letters = ["M", "T", "W", "T", "F", "S", "S"]
         let todayKey = Shanghai.key(today)
         let lastDate = disk.streak.lastDay.flatMap { Shanghai.date(from: $0) }.map { Shanghai.startOfDay($0) }
+        let locale = interfaceLocale
         return (0..<7).map { offset in
             let date = Shanghai.addDays(offset, to: monday)
             let key = Shanghai.key(date)
@@ -310,7 +309,7 @@ final class AppModel: ObservableObject {
             } else {
                 style = .upcoming
             }
-            return WeekDot(key: key, letter: letters[offset], style: style)
+            return WeekDot(key: key, letter: Shanghai.narrowWeekday(date, locale: locale), style: style)
         }
     }
 
@@ -555,14 +554,14 @@ final class AppModel: ObservableObject {
         disk.settings.dailyReminder = on
         save()
         if on {
-            let hour = disk.settings.reminderHour
-            let minute = disk.settings.reminderMinute
-            Reminder.enable(hour: hour, minute: minute) { [weak self] granted in
+            Reminder.enable { [weak self] granted in
                 DispatchQueue.main.async {
                     guard let self = self else { return }
                     if !granted {
                         self.disk.settings.dailyReminder = false
                         self.save()
+                    } else {
+                        self.rescheduleReminderIfNeeded()
                     }
                 }
             }
@@ -581,8 +580,142 @@ final class AppModel: ObservableObject {
         disk.settings.reminderMinute = nextMinute
         save()
         if disk.settings.dailyReminder {
-            Reminder.schedule(hour: nextHour, minute: nextMinute)
+            rescheduleReminderIfNeeded()
         }
+    }
+
+    func setInterfaceLanguage(_ raw: String) {
+        let next = InterfaceLanguage.normalized(raw)
+        if disk.settings.interfaceLanguage == next {
+            return
+        }
+        disk.settings.interfaceLanguage = next
+        save()
+        rescheduleReminderIfNeeded()
+    }
+
+    var appLanguage: AppLanguage {
+        InterfaceLanguage.resolve(disk.settings.interfaceLanguage)
+    }
+
+    var resolvedLanguageCode: String {
+        switch appLanguage {
+        case .english: return InterfaceLanguage.english
+        case .chinese: return InterfaceLanguage.chinese
+        }
+    }
+
+    var interfaceLocale: Locale {
+        InterfaceLanguage.locale(for: disk.settings.interfaceLanguage)
+    }
+
+    func tr(_ key: L10nKey) -> String {
+        L10n.text(key, language: appLanguage)
+    }
+
+    func trf(_ key: L10nKey, _ args: CVarArg...) -> String {
+        String(format: tr(key), arguments: args)
+    }
+
+    func tabTitle(_ tab: AppTab) -> String {
+        switch tab {
+        case .today: return tr(.tabToday)
+        case .review: return tr(.tabReview)
+        case .quiz: return tr(.tabQuiz)
+        case .pictures: return tr(.tabPictures)
+        case .saved: return tr(.tabSaved)
+        case .settings: return tr(.tabSettings)
+        }
+    }
+
+    func dueText(_ count: Int) -> String {
+        if count <= 0 {
+            return tr(.allClear)
+        }
+        return trf(.dueMany, count)
+    }
+
+    func rescheduleReminderIfNeeded() {
+        guard disk.settings.dailyReminder else { return }
+        Reminder.schedule(
+            hour: disk.settings.reminderHour,
+            minute: disk.settings.reminderMinute,
+            title: tr(.notificationTitle),
+            body: tr(.notificationBody)
+        )
+    }
+
+    func checkForUpdates() {
+        if case .checking = updateState {
+            return
+        }
+        updateState = .checking
+        let localVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
+        UpdateCheck.fetch(localVersion: localVersion) { [weak self] outcome in
+            DispatchQueue.main.async {
+                self?.updateState = outcome
+            }
+        }
+    }
+
+    func openUpdatePage() {
+        if case .available(_, let page) = updateState {
+            if let url = URL(string: page) {
+                NSWorkspace.shared.open(url)
+            }
+        }
+    }
+
+    /// Asks first, then deletes only `state.json` and writes a fresh file.
+    func confirmResetProgress() {
+        resetNotice = ""
+        let alert = NSAlert()
+        alert.messageText = tr(.resetTitle)
+        alert.informativeText = tr(.resetDetail)
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: tr(.cancel))
+        alert.addButton(withTitle: tr(.resetConfirm))
+        NSApp.activate(ignoringOtherApps: true)
+        let response = alert.runModal()
+        if response != .alertSecondButtonReturn {
+            return
+        }
+        if !deleteStateFile() {
+            resetNotice = tr(.resetFailed)
+            return
+        }
+        disk = DiskState()
+        Shanghai.apply(disk.settings.timeZoneChoice)
+        dayOffset = 0
+        quiz = nil
+        pictures = nil
+        savedDetail = nil
+        updateState = .idle
+        noteToday()
+        save()
+        Reminder.disable()
+    }
+
+    private func deleteStateFile() -> Bool {
+        let url = Self.storeURL()
+        if url.lastPathComponent != "state.json" {
+            return false
+        }
+        if url.deletingLastPathComponent().lastPathComponent != "Wordbit" {
+            return false
+        }
+        var isDirectory: ObjCBool = false
+        if FileManager.default.fileExists(atPath: url.path, isDirectory: &isDirectory) {
+            if isDirectory.boolValue {
+                return false
+            }
+            do {
+                try FileManager.default.removeItem(at: url)
+            } catch {
+                return false
+            }
+        }
+        return true
     }
 
     func setTimeZoneChoice(_ choice: String) {

@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.2.0 — 2026-10-18
+
+- **Interface language.** English is the source language. Every menu, tab, setting, hint, notification and the About text also has Simplified Chinese. The app follows the Mac: Simplified Chinese when the first language is Chinese, English otherwise. **Settings → Language** is **Automatic (follow Mac)**, **English**, or **简体中文**, and it switches straight away. Dates use the system locale's formatter (no fixed British day-month pattern). Automatic follows the Mac's locale; English or 简体中文 follows that language's locale. The words stay English, and the meanings are in Chinese today.
+- **About.** Settings shows **Wordbit** and the version from the app. **Check for updates** asks GitHub only when you click it, then says you're up to date or that a version is available, with a download page and `brew upgrade --cask wordbit`. It does not download by itself, and it does not check in the background. Offline, it just says it couldn't check. **Reset progress** asks first, then deletes `state.json`.
+- **Open at login stays off** until you turn it on. A new install no longer turns it on by itself.
+
 ## v2.1.0 — 2026-10-18
 
 - **Your time zone.** The new word and the streak follow the Mac's own time zone. Settings can switch to China time (Asia/Shanghai). Saved dates and streaks stay as plain dates, so they carry over.

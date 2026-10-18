@@ -22,19 +22,19 @@ struct ReviewView: View {
 
     private var empty: some View {
         VStack(alignment: .leading, spacing: Theme.Space.s) {
-            Theme.Eyebrow(text: "Review", kind: .review)
+            Theme.Eyebrow(text: model.tr(.tabReview), kind: .review)
             if model.showDayOneHint {
                 EmptyTabHint()
             } else {
-                Text("Nothing due")
+                Text(model.tr(.nothingDue))
                     .font(Theme.Typeface.title)
                     .foregroundColor(Theme.Palette.ink)
-                Text("You're clear for today. Cards come back on the day they're due.")
+                Text(model.tr(.nothingDueDetail))
                     .font(Theme.Typeface.body)
                     .foregroundColor(Theme.Palette.inkSecondary)
                     .fixedSize(horizontal: false, vertical: true)
                 if !model.countedToday {
-                    Button("Take today's quiz") { model.show(.quiz) }
+                    Button(model.tr(.takeTodaysQuiz)) { model.show(.quiz) }
                         .buttonStyle(Theme.SolidButtonStyle(kind: .review))
                         .padding(.top, Theme.Space.xs)
                 }
@@ -49,15 +49,15 @@ struct EmptyTabHint: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Space.xs) {
-            Text("Nothing yet.")
+            Text(model.tr(.nothingYet))
                 .font(Theme.Typeface.body)
                 .foregroundColor(Theme.Palette.ink)
             HStack(spacing: 4) {
-                Text("Try the")
-                tabLink("Quiz", tab: .quiz, kind: .quiz)
-                Text("or")
-                tabLink("Pictures", tab: .pictures, kind: .pictures)
-                Text("tab")
+                Text(model.tr(.tryThe))
+                tabLink(model.tr(.tabQuiz), tab: .quiz, kind: .quiz)
+                Text(model.tr(.orWord))
+                tabLink(model.tr(.tabPictures), tab: .pictures, kind: .pictures)
+                Text(model.tr(.tabWord))
             }
             .font(Theme.Typeface.body)
             .foregroundColor(Theme.Palette.inkSecondary)
@@ -86,9 +86,9 @@ struct FlashCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Space.m) {
             HStack {
-                Theme.Eyebrow(text: "Review", kind: .review)
+                Theme.Eyebrow(text: model.tr(.tabReview), kind: .review)
                 Spacer()
-                Text(due == 1 ? "1 due" : "\(due) due")
+                Text(model.dueText(due))
                     .font(Theme.Typeface.caption)
                     .foregroundColor(Theme.CardKind.review.accentText)
             }
@@ -102,7 +102,7 @@ struct FlashCard: View {
                             .foregroundColor(Theme.Palette.ink)
                             .lineLimit(1)
                             .minimumScaleFactor(0.6)
-                        Text("Tap to show the meaning")
+                        Text(model.tr(.tapToShow))
                             .font(Theme.Typeface.caption)
                             .foregroundColor(Theme.Palette.inkSecondary)
                     } else {
@@ -134,11 +134,11 @@ struct FlashCard: View {
 
             if flipped {
                 HStack(spacing: Theme.Space.s) {
-                    Button("Again") { model.grade(word: entry.word, grade: .again) }
+                    Button(model.tr(.again)) { model.grade(word: entry.word, grade: .again) }
                         .buttonStyle(Theme.SolidButtonStyle(kind: .quiz))
-                    Button("Good") { model.grade(word: entry.word, grade: .good) }
+                    Button(model.tr(.good)) { model.grade(word: entry.word, grade: .good) }
                         .buttonStyle(Theme.SolidButtonStyle(kind: .review))
-                    Button("Easy") { model.grade(word: entry.word, grade: .easy) }
+                    Button(model.tr(.easy)) { model.grade(word: entry.word, grade: .easy) }
                         .buttonStyle(Theme.SolidButtonStyle(kind: .word))
                 }
             }
@@ -172,8 +172,8 @@ struct QuizScreen: View {
             }
         } else {
             LoadErrorCard(
-                title: "Quiz isn't ready",
-                detail: "The word list didn't have enough entries to build five questions."
+                title: model.tr(.quizNotReady),
+                detail: model.tr(.quizNotReadyDetail)
             )
         }
     }
@@ -188,15 +188,15 @@ struct QuizCard: View {
         let entry = model.library.entry(for: question.word)
         VStack(alignment: .leading, spacing: Theme.Space.m) {
             HStack {
-                Theme.Eyebrow(text: "Quiz", kind: .quiz)
+                Theme.Eyebrow(text: model.tr(.tabQuiz), kind: .quiz)
                 Spacer()
-                Text("\(session.index + 1) of \(session.questions.count)")
+                Text(model.trf(.quizProgress, session.index + 1, session.questions.count))
                     .font(Theme.Typeface.caption)
                     .foregroundColor(Theme.CardKind.quiz.accentText)
             }
             progress
             if question.kind == .meaning {
-                Text("What does this mean?")
+                Text(model.tr(.whatDoesThisMean))
                     .font(Theme.Typeface.caption)
                     .foregroundColor(Theme.Palette.inkSecondary)
                 HStack(spacing: Theme.Space.s) {
@@ -208,7 +208,7 @@ struct QuizCard: View {
                     }
                 }
             } else {
-                Text("Fill in the blank")
+                Text(model.tr(.fillBlank))
                     .font(Theme.Typeface.caption)
                     .foregroundColor(Theme.Palette.inkSecondary)
                 Text("“\(question.prompt)”")
@@ -238,12 +238,12 @@ struct QuizCard: View {
                 }
             }
             if session.revealing {
-                Button(session.index + 1 >= session.questions.count ? "Done" : "Next") {
+                Button(session.index + 1 >= session.questions.count ? model.tr(.done) : model.tr(.next)) {
                     model.advanceReveal()
                 }
                 .buttonStyle(Theme.SolidButtonStyle(kind: .quiz))
             } else if session.picked != nil {
-                Button(session.index + 1 >= session.questions.count ? "See score" : "Next") {
+                Button(session.index + 1 >= session.questions.count ? model.tr(.seeScore) : model.tr(.next)) {
                     model.advanceQuiz()
                 }
                 .buttonStyle(Theme.SolidButtonStyle(kind: .quiz))
@@ -288,12 +288,12 @@ struct QuizResult: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Space.s) {
-            Theme.Eyebrow(text: "Quiz", kind: .quiz)
+            Theme.Eyebrow(text: model.tr(.tabQuiz), kind: .quiz)
             HStack(alignment: .lastTextBaseline, spacing: Theme.Space.xs) {
                 Text("\(session.savedScore)")
                     .font(Theme.Typeface.stat)
                     .foregroundColor(Theme.Palette.ink)
-                Text("of \(session.questions.count)")
+                Text(model.trf(.ofTotal, session.questions.count))
                     .font(Theme.Typeface.body)
                     .foregroundColor(Theme.Palette.inkSecondary)
             }
@@ -302,11 +302,11 @@ struct QuizResult: View {
                 .foregroundColor(Theme.Palette.ink)
                 .fixedSize(horizontal: false, vertical: true)
             if model.countedToday {
-                Text("Today counts toward your streak.")
+                Text(model.tr(.todayCountsStreak))
                     .font(Theme.Typeface.caption)
                     .foregroundColor(Theme.CardKind.quiz.accentText)
             }
-            Button("See the answers") { model.startReveal() }
+            Button(model.tr(.seeAnswers)) { model.startReveal() }
                 .buttonStyle(Theme.SolidButtonStyle(kind: .quiz))
                 .padding(.top, Theme.Space.xs)
         }
@@ -315,10 +315,10 @@ struct QuizResult: View {
 
     private var blurb: String {
         switch session.savedScore {
-        case 5: return "All five. That one will stay with you."
-        case 4: return "Four out of five. Close."
-        case 3: return "Three out of five. Worth another look."
-        default: return "A hard set. Today still counts, because you finished."
+        case 5: return model.tr(.quizBlurb5)
+        case 4: return model.tr(.quizBlurb4)
+        case 3: return model.tr(.quizBlurb3)
+        default: return model.tr(.quizBlurbLow)
         }
     }
 }
@@ -347,8 +347,8 @@ struct PicturesScreen: View {
             }
         } else {
             LoadErrorCard(
-                title: "Pictures didn't load",
-                detail: "pictures.json is missing from the app. Run ./install.sh again."
+                title: model.tr(.picturesDidntLoad),
+                detail: model.tr(.picturesMissing)
             )
         }
     }
@@ -362,7 +362,7 @@ struct PictureCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Space.m) {
             HStack {
-                Theme.Eyebrow(text: "Pictures", kind: .pictures)
+                Theme.Eyebrow(text: model.tr(.tabPictures), kind: .pictures)
                 Spacer()
                 Text("\(round.results.filter { $0 }.count)/\(round.questions.count)")
                     .font(Theme.Typeface.statSmall)
@@ -372,11 +372,11 @@ struct PictureCard: View {
                     .background(Capsule().fill(Theme.CardKind.pictures.softFill))
             }
             HStack {
-                Text("Which word is this?")
+                Text(model.tr(.whichWord))
                     .font(Theme.Typeface.caption)
                     .foregroundColor(Theme.Palette.inkSecondary)
                 Spacer()
-                Theme.Chip(text: "Level \(question.level)", kind: .pictures)
+                Theme.Chip(text: model.trf(.level, question.level), kind: .pictures)
             }
             ZStack {
                 RoundedRectangle(cornerRadius: Theme.Radius.inner, style: .continuous)
@@ -394,7 +394,7 @@ struct PictureCard: View {
             if let picked = round.picked {
                 HStack(spacing: 4) {
                     Image(systemName: picked == question.answerIndex ? "checkmark" : "xmark")
-                    Text(picked == question.answerIndex ? "Correct" : "Answer: \(question.word)")
+                    Text(picked == question.answerIndex ? model.tr(.correct) : model.trf(.answerIs, question.word))
                 }
                 .font(Theme.Typeface.caption)
                 .foregroundColor(picked == question.answerIndex ? Theme.Palette.success : Theme.Palette.danger)
@@ -414,7 +414,7 @@ struct PictureCard: View {
                 }
             }
             if round.picked != nil {
-                Button(round.index + 1 >= round.questions.count ? "See score" : "Next") {
+                Button(round.index + 1 >= round.questions.count ? model.tr(.seeScore) : model.tr(.next)) {
                     model.advancePicture()
                 }
                 .buttonStyle(Theme.SolidButtonStyle(kind: .pictures))
@@ -452,19 +452,19 @@ struct PictureResult: View {
         let score = round.results.filter { $0 }.count
         let total = round.questions.count
         VStack(alignment: .leading, spacing: Theme.Space.s) {
-            Theme.Eyebrow(text: "Pictures", kind: .pictures)
+            Theme.Eyebrow(text: model.tr(.tabPictures), kind: .pictures)
             HStack(alignment: .lastTextBaseline, spacing: Theme.Space.xs) {
                 Text("\(score)")
                     .font(Theme.Typeface.stat)
                     .foregroundColor(Theme.Palette.ink)
-                Text("of \(total)")
+                Text(model.trf(.ofTotal, total))
                     .font(Theme.Typeface.body)
                     .foregroundColor(Theme.Palette.inkSecondary)
             }
             Text(blurb(score: score, total: total))
                 .font(Theme.Typeface.body)
                 .foregroundColor(Theme.Palette.ink)
-            Button("Play again") { model.replayPictures() }
+            Button(model.tr(.playAgain)) { model.replayPictures() }
                 .buttonStyle(Theme.SolidButtonStyle(kind: .pictures))
                 .padding(.top, Theme.Space.xs)
         }
@@ -472,8 +472,8 @@ struct PictureResult: View {
     }
 
     private func blurb(score: Int, total: Int) -> String {
-        if score == total { return "A clean round." }
-        if total > 0 && score * 5 >= total * 4 { return "Most of them stuck." }
-        return "A few to look at again."
+        if score == total { return model.tr(.picturePerfect) }
+        if total > 0 && score * 5 >= total * 4 { return model.tr(.pictureMost) }
+        return model.tr(.pictureSome)
     }
 }

@@ -3,16 +3,6 @@ import Combine
 import SwiftUI
 import UserNotifications
 
-let aboutBlurb = "Made by @pohstep_x027 on X, new to vibe coding and open to suggestions and to learning."
-
-let creditsText = """
-\(aboutBlurb)
-
-Definitions and examples from Wiktionary (CC BY-SA 4.0) via kaikki.org, \
-with some from Princeton WordNet 3.0. Pronunciations from Wiktionary or the \
-CMU Pronouncing Dictionary. Chinese glosses from ECDICT (MIT). Chinese meanings checked by AI — corrections welcome.
-"""
-
 final class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate, UNUserNotificationCenterDelegate {
     let library = WordLibrary()
     lazy var model = AppModel(library: library)
@@ -21,6 +11,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate, UNU
     let popover = NSPopover()
     var hosting: NSHostingController<AnyView>!
     var bag = Set<AnyCancellable>()
+    var menuLanguage = ""
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         UNUserNotificationCenter.current().delegate = self
@@ -43,14 +34,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate, UNU
         popover.animates = true
         popover.delegate = self
 
-        buildMenu()
-        model.bootstrap(login: login)
-        updateStatusImage()
+        model.bootstrap()
+        refreshChrome()
 
         model.objectWillChange
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                DispatchQueue.main.async { self?.updateStatusImage() }
+                DispatchQueue.main.async { self?.refreshChrome() }
             }
             .store(in: &bag)
 
@@ -69,29 +59,38 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate, UNU
         model.speech.stop()
     }
 
+    func refreshChrome() {
+        let code = model.resolvedLanguageCode
+        if code != menuLanguage {
+            menuLanguage = code
+            buildMenu()
+        }
+        updateStatusImage()
+    }
+
     func buildMenu() {
         let main = NSMenu()
         let appItem = NSMenuItem()
         main.addItem(appItem)
         let appMenu = NSMenu()
-        let about = appMenu.addItem(withTitle: "About Wordbit", action: #selector(showAbout), keyEquivalent: "")
+        let about = appMenu.addItem(withTitle: model.tr(.menuAbout), action: #selector(showAbout), keyEquivalent: "")
         about.target = self
         appMenu.addItem(NSMenuItem.separator())
-        appMenu.addItem(withTitle: "Quit Wordbit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        appMenu.addItem(withTitle: model.tr(.menuQuit), action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         appItem.submenu = appMenu
 
         let editItem = NSMenuItem()
         main.addItem(editItem)
-        let edit = NSMenu(title: "Edit")
-        edit.addItem(withTitle: "Undo", action: Selector(("undo:")), keyEquivalent: "z")
-        edit.addItem(withTitle: "Redo", action: Selector(("redo:")), keyEquivalent: "Z")
+        let edit = NSMenu(title: model.tr(.menuEdit))
+        edit.addItem(withTitle: model.tr(.menuUndo), action: Selector(("undo:")), keyEquivalent: "z")
+        edit.addItem(withTitle: model.tr(.menuRedo), action: Selector(("redo:")), keyEquivalent: "Z")
         edit.addItem(NSMenuItem.separator())
-        edit.addItem(withTitle: "Cut", action: #selector(NSText.cut(_:)), keyEquivalent: "x")
-        edit.addItem(withTitle: "Copy", action: #selector(NSText.copy(_:)), keyEquivalent: "c")
-        edit.addItem(withTitle: "Paste", action: #selector(NSText.paste(_:)), keyEquivalent: "v")
-        edit.addItem(withTitle: "Select All", action: #selector(NSText.selectAll(_:)), keyEquivalent: "a")
+        edit.addItem(withTitle: model.tr(.menuCut), action: #selector(NSText.cut(_:)), keyEquivalent: "x")
+        edit.addItem(withTitle: model.tr(.menuCopy), action: #selector(NSText.copy(_:)), keyEquivalent: "c")
+        edit.addItem(withTitle: model.tr(.menuPaste), action: #selector(NSText.paste(_:)), keyEquivalent: "v")
+        edit.addItem(withTitle: model.tr(.menuSelectAll), action: #selector(NSText.selectAll(_:)), keyEquivalent: "a")
         edit.addItem(NSMenuItem.separator())
-        let copyWord = edit.addItem(withTitle: "Copy Word", action: #selector(copyWord), keyEquivalent: "C")
+        let copyWord = edit.addItem(withTitle: model.tr(.menuCopyWord), action: #selector(copyWord), keyEquivalent: "C")
         copyWord.target = self
         editItem.submenu = edit
         NSApp.mainMenu = main
@@ -102,8 +101,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate, UNU
             .font: NSFont.systemFont(ofSize: 11),
             .foregroundColor: NSColor.secondaryLabelColor
         ]
+        let credits = model.tr(.aboutMadeBy) + "\n\n" + model.tr(.aboutCredits)
         let options: [NSApplication.AboutPanelOptionKey: Any] = [
-            .credits: NSAttributedString(string: creditsText, attributes: attrs)
+            .credits: NSAttributedString(string: credits, attributes: attrs)
         ]
         NSApp.orderFrontStandardAboutPanel(options: options)
         NSApp.activate(ignoringOtherApps: true)
@@ -117,7 +117,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate, UNU
         guard let button = statusItem?.button else { return }
         let due = model.dueCount
         button.image = Self.statusImage(due: due > 0)
-        button.toolTip = due > 0 ? "Wordbit — \(due) to review" : "Wordbit"
+        if due > 0 {
+            button.toolTip = model.trf(.tooltipDueMany, due)
+        } else {
+            button.toolTip = model.tr(.tooltipIdle)
+        }
     }
 
     @objc func togglePopover(_ sender: Any?) {
@@ -396,6 +400,13 @@ enum SelfCheck {
             for option in question.options where option != question.word && !close.contains(option.lowercased()) {
                 problems.append("picture option \(option) is not a close distractor for \(question.word)")
             }
+        }
+
+        for problem in L10n.coverageProblems() {
+            problems.append(problem)
+        }
+        for problem in UpdateCheck.sampleProblems() {
+            problems.append(problem)
         }
 
         if problems.isEmpty {
