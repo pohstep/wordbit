@@ -1,0 +1,660 @@
+{
+  "source": "AI-assisted CN gloss check, 18 Oct 2026",
+  "words": {
+    "dormant": {
+      "from": "睡眠状态的；静止的",
+      "to": "休眠的；蛰伏的；暂停活动的"
+    },
+    "impervious": {
+      "from": "透不过的；不易损坏的",
+      "to": "不受影响的；不为所动的；不透水的",
+      "note": "definition is 'unaffected'"
+    },
+    "cogent": {
+      "from": "使人首肯的；使人信服的",
+      "to": "有说服力的；令人信服的"
+    },
+    "didactic": {
+      "from": "教训的；说教的",
+      "to": "教导性的；说教的"
+    },
+    "judicious": {
+      "from": "头脑精明的；贤明的",
+      "to": "明智的；审慎的"
+    },
+    "vitriolic": {
+      "from": "硫酸的；像硫酸的",
+      "to": "尖刻的；刻薄的",
+      "note": "chemistry sense, not the given meaning"
+    },
+    "undermine": {
+      "from": "在...下面挖；渐渐破坏",
+      "to": "削弱；暗中破坏"
+    },
+    "dexterous": {
+      "from": "灵巧的；惯用右手的",
+      "to": "灵巧的；熟练的",
+      "note": "'right-handed' is archaic"
+    },
+    "tranquil": {
+      "from": "安静的",
+      "to": "平静的；宁静的"
+    },
+    "poignant": {
+      "from": "辛酸的；尖锐的",
+      "to": "令人心酸的；感人的"
+    },
+    "gregarious": {
+      "from": "社交的；群居的",
+      "to": "爱交际的；群居的"
+    },
+    "convoluted": {
+      "from": "盘绕的；回旋的",
+      "to": "错综复杂的；盘绕的",
+      "note": "main modern sense first"
+    },
+    "oblivious": {
+      "from": "遗忘的；健忘的",
+      "to": "未察觉的；不在意的",
+      "note": "means unaware, not forgetful"
+    },
+    "indolent": {
+      "from": "懒惰的；无痛的",
+      "to": "懒惰的；懒散的",
+      "note": "无痛 is a medical sense"
+    },
+    "opaque": {
+      "from": "不透明的；不传热的",
+      "to": "不透明的；晦涩难懂的"
+    },
+    "ostentatious": {
+      "from": "装饰表面的；铺张的",
+      "to": "炫耀的；铺张的"
+    },
+    "idyllic": {
+      "from": "田园诗的；牧歌的",
+      "to": "田园诗般的；恬静美好的"
+    },
+    "phlegmatic": {
+      "from": "粘液质的；平静的",
+      "to": "冷静的；不易激动的"
+    },
+    "rectify": {
+      "from": "订正；矫正",
+      "to": "纠正；矫正"
+    },
+    "exhaustive": {
+      "from": "消耗的；枯竭的",
+      "to": "详尽的；彻底的",
+      "note": "wrong sense"
+    },
+    "bucolic": {
+      "from": "牧民的；牧歌的",
+      "to": "田园的；乡村的"
+    },
+    "verbose": {
+      "from": "用字多的；冗长的",
+      "to": "啰唆的；冗长的"
+    },
+    "deplore": {
+      "from": "悲悼；哀叹",
+      "to": "强烈谴责；痛惜",
+      "note": "definition is 'condemn'"
+    },
+    "defunct": {
+      "from": "死的；不能使用的",
+      "to": "已停用的；不复存在的"
+    },
+    "frivolous": {
+      "from": "轻佻的；妄动的",
+      "to": "轻浮的；无聊的"
+    },
+    "proscribe": {
+      "from": "剥夺...的公民权；使失去法律保护",
+      "to": "禁止；取缔",
+      "note": "definition is 'forbid'"
+    },
+    "flagrant": {
+      "from": "极端明显的；不能容忍的",
+      "to": "公然的；恶劣的"
+    },
+    "torpid": {
+      "from": "麻痹的；迟缓的",
+      "to": "迟钝的；懒散的"
+    },
+    "condone": {
+      "from": "赦；宽恕",
+      "to": "宽恕；纵容"
+    },
+    "denigrate": {
+      "from": "使变黑；玷污",
+      "to": "诋毁；贬低",
+      "note": "'blacken' is literal"
+    },
+    "polarize": {
+      "from": "偏振；极化",
+      "to": "使两极分化；使极化"
+    },
+    "inundate": {
+      "from": "浸水；泛滥",
+      "to": "淹没；使应接不暇"
+    },
+    "obsolete": {
+      "from": "荒废的；成废物的",
+      "to": "过时的；废弃的"
+    },
+    "coherent": {
+      "from": "互相耦合的；清晰的",
+      "to": "连贯的；条理清楚的",
+      "note": "physics sense"
+    },
+    "egregious": {
+      "from": "异乎寻常的；过分的",
+      "to": "极其恶劣的；过分的"
+    },
+    "venerable": {
+      "from": "庄严的；值得尊敬的",
+      "to": "德高望重的；值得尊敬的"
+    },
+    "antagonize": {
+      "from": "引起反抗",
+      "to": "使对立；激怒"
+    },
+    "impeccable": {
+      "from": "无懈可击的；勿容置疑的",
+      "to": "无可挑剔的；完美无瑕的",
+      "note": "勿 is a typo"
+    },
+    "blatant": {
+      "from": "喧嚣的；吵闹的",
+      "to": "明目张胆的；公然的",
+      "note": "wrong sense"
+    },
+    "stoic": {
+      "from": "斯多葛派的；禁欲主义的",
+      "to": "坚忍的；淡定隐忍的"
+    },
+    "palatable": {
+      "from": "美味的；好吃的",
+      "to": "可口的；可以接受的"
+    },
+    "kindle": {
+      "from": "着火；激动",
+      "to": "点燃；激起"
+    },
+    "acrimony": {
+      "from": "严厉；尖刻",
+      "to": "尖刻；激烈的敌意"
+    },
+    "pragmatic": {
+      "from": "忙碌的；爱管闲事的",
+      "to": "务实的；讲求实际的",
+      "note": "wrong sense"
+    },
+    "emulate": {
+      "from": "效法；尽力赶上",
+      "to": "仿效；努力赶上"
+    },
+    "inept": {
+      "from": "不适当的；不理智的",
+      "to": "笨拙的；无能的"
+    },
+    "expedient": {
+      "from": "权宜的；方便的",
+      "to": "权宜的；有利的"
+    },
+    "prosaic": {
+      "from": "散文的；散文体的",
+      "to": "平淡乏味的；平凡的",
+      "note": "definition is 'matter-of-fact'"
+    },
+    "cognizant": {
+      "from": "察知的；认识到的",
+      "to": "意识到的；知晓的"
+    },
+    "ingenious": {
+      "from": "灵敏的；精巧的",
+      "to": "巧妙的；有独创性的"
+    },
+    "convivial": {
+      "from": "酒宴的；欢宴的",
+      "to": "欢乐的；好交际的"
+    },
+    "squander": {
+      "from": "浪费；漂泊",
+      "to": "挥霍；浪费",
+      "note": "漂泊 is wrong"
+    },
+    "astute": {
+      "from": "敏锐的；狡猾的",
+      "to": "精明的；敏锐的"
+    },
+    "uncanny": {
+      "from": "怪诞的；可怕的",
+      "to": "离奇的；神秘的"
+    },
+    "intransigent": {
+      "from": "非妥协性的",
+      "to": "不妥协的；固执的"
+    },
+    "preeminent": {
+      "from": "优秀的；超群的",
+      "to": "卓越的；超群的"
+    },
+    "scrupulous": {
+      "from": "小心谨慎的；细心的",
+      "to": "一丝不苟的；有道德顾虑的"
+    },
+    "inadvertent": {
+      "from": "漫不经心的；非故意的",
+      "to": "无意的；疏忽的"
+    },
+    "relegate": {
+      "from": "驱逐；使降低地位",
+      "to": "贬谪；使降级；交付处理"
+    },
+    "inexorable": {
+      "from": "无情的；冷酷的",
+      "to": "不可阻挡的；无法改变的"
+    },
+    "dichotomy": {
+      "from": "两分；分裂",
+      "to": "二分法；对立"
+    },
+    "elusive": {
+      "from": "难懂的；易忘的",
+      "to": "难以捉摸的；难以把握的"
+    },
+    "paradigm": {
+      "from": "范例；式样",
+      "to": "范式；典范"
+    },
+    "ingenuous": {
+      "from": "坦白的；正直的",
+      "to": "天真的；坦率的"
+    },
+    "rigorous": {
+      "from": "严厉的；严酷的",
+      "to": "严谨的；严格的"
+    },
+    "stringent": {
+      "from": "迫切的；严厉的",
+      "to": "严格的；严厉的"
+    },
+    "esoteric": {
+      "from": "秘教的；奥秘的",
+      "to": "深奥的；只有内行懂的"
+    },
+    "tenuous": {
+      "from": "稀薄的；微细的",
+      "to": "薄弱的；稀薄的"
+    },
+    "wane": {
+      "from": "变小；亏缺",
+      "to": "衰落；（月）亏"
+    },
+    "intangible": {
+      "from": "难以明了的；无形的",
+      "to": "无形的；难以捉摸的"
+    },
+    "exemplary": {
+      "from": "可仿效的；可做模范的",
+      "to": "模范的；堪称楷模的"
+    },
+    "nonchalant": {
+      "from": "不关心的；冷淡的",
+      "to": "若无其事的；漠不关心的"
+    },
+    "impasse": {
+      "from": "难局；僵局",
+      "to": "僵局；绝境"
+    },
+    "lackadaisical": {
+      "from": "懒洋洋的；愁闷的",
+      "to": "无精打采的；懒散的"
+    },
+    "paradox": {
+      "from": "似非而是的论点；自相矛盾的话",
+      "to": "悖论；自相矛盾的事"
+    },
+    "servile": {
+      "from": "奴隶的；奴性的",
+      "to": "奴性的；卑躬屈膝的"
+    },
+    "hiatus": {
+      "from": "裂缝；中断",
+      "to": "中断；间断"
+    },
+    "wily": {
+      "from": "使用计谋的；有诡计的",
+      "to": "狡猾的；诡计多端的"
+    },
+    "unscrupulous": {
+      "from": "无道德原则的；不审慎的",
+      "to": "无耻的；不择手段的"
+    },
+    "indefatigable": {
+      "from": "不知疲倦的；有耐性的",
+      "to": "不知疲倦的；孜孜不倦的"
+    },
+    "succinct": {
+      "from": "简洁的；紧缩的",
+      "to": "简洁的；简明扼要的"
+    },
+    "pithy": {
+      "from": "有髓的；由髓组成的",
+      "to": "简练的；言简意赅的",
+      "note": "botanical sense"
+    },
+    "somber": {
+      "from": "昏暗的；阴天的",
+      "to": "昏暗的；忧郁的"
+    },
+    "blithe": {
+      "from": "愉快的；高兴的",
+      "to": "漫不经心的；无忧无虑的",
+      "note": "definition stresses carelessness"
+    },
+    "impudent": {
+      "from": "鲁莽的；卑鄙的",
+      "to": "无礼的；厚颜无耻的"
+    },
+    "insular": {
+      "from": "岛的；岛民的",
+      "to": "狭隘的；岛屿的"
+    },
+    "renounce": {
+      "from": "垫牌；声明放弃权利",
+      "to": "放弃；宣布断绝",
+      "note": "垫牌 is a card-game term"
+    },
+    "nostalgia": {
+      "from": "乡愁；向往过去",
+      "to": "怀旧；乡愁"
+    },
+    "futile": {
+      "from": "无用的；琐细的",
+      "to": "徒劳的；无效的"
+    },
+    "pensive": {
+      "from": "沉思的；哀思的",
+      "to": "沉思的；忧思的"
+    },
+    "formidable": {
+      "from": "巨大的；优秀的",
+      "to": "令人敬畏的；难对付的"
+    },
+    "nascent": {
+      "from": "发生中的；开始存在的",
+      "to": "新生的；初期的"
+    },
+    "harangue": {
+      "from": "演讲；热烈讨论",
+      "to": "长篇激烈的训斥；大肆抨击"
+    },
+    "vicarious": {
+      "from": "代理的；代用的",
+      "to": "间接感受的；代理的"
+    },
+    "austere": {
+      "from": "严峻的；禁欲的",
+      "to": "严肃的；朴素的；简朴的"
+    },
+    "buttress": {
+      "from": "支持；以扶壁支撑",
+      "to": "支持；加强"
+    },
+    "utilitarian": {
+      "from": "有效用的；实利主义的",
+      "to": "实用的；功利主义的"
+    },
+    "bane": {
+      "from": "祸根；毒药",
+      "to": "祸根；祸害"
+    },
+    "belie": {
+      "from": "掩饰；与...不符",
+      "to": "掩饰；与……不符；证明……为假"
+    },
+    "viable": {
+      "from": "能养活的；能生长发育的",
+      "to": "可行的；能存活的",
+      "note": "definition is 'feasible'"
+    },
+    "antithesis": {
+      "from": "对偶；对照",
+      "to": "对立面；对立"
+    },
+    "palpable": {
+      "from": "可感知的；明显的",
+      "to": "明显的；可触知的"
+    },
+    "redolent": {
+      "from": "芬芳的；有...香味的",
+      "to": "令人联想到……的；有……气味的"
+    },
+    "mediocre": {
+      "from": "不好不坏的；通常",
+      "to": "平庸的；普通的"
+    },
+    "desultory": {
+      "from": "散漫的；无条理的",
+      "to": "散漫的；漫无目的的"
+    },
+    "vociferous": {
+      "from": "大声叫的；喊叫的",
+      "to": "大声疾呼的；喧嚷的"
+    },
+    "flout": {
+      "from": "表示轻蔑",
+      "to": "公然违抗；藐视"
+    },
+    "quixotic": {
+      "from": "堂吉诃德式的；愚侠的",
+      "to": "堂吉诃德式的；不切实际的"
+    },
+    "derivative": {
+      "from": "引出的；派生的",
+      "to": "派生的；缺乏新意的"
+    },
+    "officious": {
+      "from": "多管闲事的；非官方的",
+      "to": "爱管闲事的；好指手画脚的"
+    },
+    "puerile": {
+      "from": "孩子气的；天真的",
+      "to": "幼稚的；孩子气的"
+    },
+    "idiosyncrasy": {
+      "from": "气质；特性",
+      "to": "怪癖；特性"
+    },
+    "arduous": {
+      "from": "费力的；努力的",
+      "to": "艰巨的；费力的"
+    },
+    "thwart": {
+      "from": "反对；阻挠",
+      "to": "阻挠；挫败"
+    },
+    "quotidian": {
+      "from": "每日的；每日发作的",
+      "to": "日常的；平凡的"
+    },
+    "fervent": {
+      "from": "热的；炎热的",
+      "to": "热情的；热烈的",
+      "note": "literal 'hot'"
+    },
+    "unabashed": {
+      "from": "不脸红的；不害羞的",
+      "to": "毫不掩饰的；不害羞的"
+    },
+    "explicit": {
+      "from": "详述的；清楚的",
+      "to": "明确的；露骨的"
+    },
+    "hackneyed": {
+      "from": "使用过于频繁的；常见的",
+      "to": "陈腐的；老套的"
+    },
+    "dissipate": {
+      "from": "消散；放荡",
+      "to": "消散；驱散；挥霍"
+    },
+    "abstain": {
+      "from": "自制；戒绝",
+      "to": "戒除；（投票）弃权"
+    },
+    "gratuitous": {
+      "from": "免费的；无理由的",
+      "to": "无端的；不必要的"
+    },
+    "vex": {
+      "from": "烦恼",
+      "to": "使恼火；使烦恼",
+      "note": "verb form"
+    },
+    "peruse": {
+      "from": "熟读；精读",
+      "to": "细读；仔细审阅"
+    },
+    "disparate": {
+      "from": "根本不同的；全异的",
+      "to": "迥然不同的；不相干的"
+    },
+    "insinuate": {
+      "from": "旁敲侧击",
+      "to": "暗示；巧妙地挤入"
+    },
+    "solicitous": {
+      "from": "关心的；渴望的",
+      "to": "关切的；热切的"
+    },
+    "aberration": {
+      "from": "离开正路；偏离",
+      "to": "偏差；反常"
+    },
+    "indigenous": {
+      "from": "本土的；国产的",
+      "to": "本土的；土生土长的"
+    },
+    "dwindle": {
+      "from": "减少；缩小",
+      "to": "逐渐减少；萎缩"
+    },
+    "fickle": {
+      "from": "变幻无常的；浮燥的",
+      "to": "变化无常的；反复无常的",
+      "note": "浮燥 is a typo"
+    },
+    "amenable": {
+      "from": "服从的；会接纳的",
+      "to": "顺从的；乐于接受的"
+    },
+    "adamant": {
+      "from": "非常坚硬的；坚强的",
+      "to": "坚决的；坚定不移的",
+      "note": "definition: impervious to pleas"
+    },
+    "pristine": {
+      "from": "太古的；原来的",
+      "to": "崭新的；纯净的；原始的"
+    },
+    "punctilious": {
+      "from": "精密细心的；一丝不苟的",
+      "to": "一丝不苟的；拘泥细节的"
+    },
+    "burgeon": {
+      "from": "萌芽；发芽",
+      "to": "迅速发展；萌芽"
+    },
+    "digress": {
+      "from": "走向岔道；离题",
+      "to": "离题；跑题"
+    },
+    "conducive": {
+      "from": "有益于...的；有助于...的",
+      "to": "有助于……的；有益的"
+    },
+    "consensus": {
+      "from": "合意；一致",
+      "to": "共识；一致意见"
+    },
+    "nebulous": {
+      "from": "星云的；星云状的",
+      "to": "模糊的；朦胧的"
+    },
+    "inveterate": {
+      "from": "根深的；成癖的",
+      "to": "根深蒂固的；积习难改的"
+    },
+    "truculent": {
+      "from": "野蛮的；粗暴的",
+      "to": "好斗的；粗暴的"
+    },
+    "tenacious": {
+      "from": "紧握的；固执的",
+      "to": "坚韧的；顽强的；记忆力强的"
+    },
+    "maudlin": {
+      "from": "容易流泪的；感伤的",
+      "to": "过分伤感的；易流泪的"
+    },
+    "congenial": {
+      "from": "协调的；一致的",
+      "to": "意气相投的；适宜的"
+    },
+    "audacious": {
+      "from": "大胆的；鲁莽的",
+      "to": "大胆的；无畏的"
+    },
+    "discrepancy": {
+      "from": "不符合；差异",
+      "to": "不一致；差异"
+    },
+    "clandestine": {
+      "from": "偷偷摸摸的",
+      "to": "秘密的；暗中的"
+    },
+    "turpitude": {
+      "from": "卑鄙行为；卑鄙",
+      "to": "卑鄙；堕落"
+    },
+    "garish": {
+      "from": "穿着花哨的；炫耀的",
+      "to": "俗艳的；花哨的"
+    },
+    "cerebral": {
+      "from": "脑的；大脑的",
+      "to": "理性的；大脑的"
+    },
+    "sanguine": {
+      "from": "血红色的；满怀希望的",
+      "to": "乐观的；满怀希望的"
+    },
+    "commensurate": {
+      "from": "同量的；同等的",
+      "to": "相称的；相当的"
+    },
+    "partisan": {
+      "from": "党派的；偏袒的",
+      "to": "偏袒一方的；党派的"
+    }
+  },
+  "pictures": {
+    "postal horn": {
+      "from": "邮号",
+      "to": "邮政号角"
+    },
+    "orangutan": {
+      "from": "猩猩",
+      "to": "红毛猩猩",
+      "note": "猩猩 is generic"
+    },
+    "chess pawn": {
+      "from": "兵（国际象棋）",
+      "to": "国际象棋兵"
+    }
+  }
+}

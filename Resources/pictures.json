@@ -1,0 +1,2342 @@
+[
+  {
+    "word": "telescope",
+    "glyph": "🔭",
+    "cn": "望远镜",
+    "cnStatus": "checked",
+    "distractorGroup": "science",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "microscope",
+      "periscope",
+      "binoculars",
+      "kaleidoscope"
+    ]
+  },
+  {
+    "word": "microscope",
+    "glyph": "🔬",
+    "cn": "显微镜",
+    "cnStatus": "checked",
+    "distractorGroup": "science",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "telescope",
+      "periscope",
+      "stethoscope",
+      "projector"
+    ]
+  },
+  {
+    "word": "magnifying glass",
+    "glyph": "🔍",
+    "cn": "放大镜",
+    "cnStatus": "checked",
+    "distractorGroup": "science",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "monocle",
+      "spyglass",
+      "lorgnette",
+      "hand mirror"
+    ]
+  },
+  {
+    "word": "test tube",
+    "glyph": "🧪",
+    "cn": "试管",
+    "cnStatus": "checked",
+    "distractorGroup": "science",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "beaker",
+      "flask",
+      "pipette",
+      "vial"
+    ]
+  },
+  {
+    "word": "petri dish",
+    "glyph": "🧫",
+    "cn": "培养皿",
+    "cnStatus": "checked",
+    "distractorGroup": "science",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "crucible",
+      "saucer",
+      "watch glass",
+      "beaker"
+    ]
+  },
+  {
+    "word": "double helix",
+    "glyph": "🧬",
+    "cn": "双螺旋",
+    "cnStatus": "checked",
+    "distractorGroup": "science",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "corkscrew",
+      "chromosome",
+      "spiral staircase",
+      "coil"
+    ]
+  },
+  {
+    "word": "alembic",
+    "glyph": "⚗️",
+    "cn": "蒸馏器",
+    "cnStatus": "checked",
+    "distractorGroup": "science",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "beaker",
+      "decanter",
+      "crucible",
+      "carafe"
+    ]
+  },
+  {
+    "word": "atom",
+    "glyph": "⚛️",
+    "cn": "原子",
+    "cnStatus": "checked",
+    "distractorGroup": "science",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "molecule",
+      "orbit",
+      "nucleus",
+      "gyroscope"
+    ]
+  },
+  {
+    "word": "abacus",
+    "glyph": "🧮",
+    "cn": "算盘",
+    "cnStatus": "checked",
+    "distractorGroup": "science",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "slide rule",
+      "calculator",
+      "ledger",
+      "loom"
+    ]
+  },
+  {
+    "word": "microbe",
+    "glyph": "🦠",
+    "cn": "微生物",
+    "cnStatus": "checked",
+    "distractorGroup": "science",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "molecule",
+      "spore",
+      "amoeba",
+      "pollen grain"
+    ]
+  },
+  {
+    "word": "balance scale",
+    "glyph": "⚖️",
+    "cn": "天平",
+    "cnStatus": "checked",
+    "distractorGroup": "science",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "seesaw",
+      "pendulum",
+      "steelyard",
+      "weathervane"
+    ]
+  },
+  {
+    "word": "compass",
+    "glyph": "🧭",
+    "cn": "指南针",
+    "cnStatus": "checked",
+    "distractorGroup": "science",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "sundial",
+      "barometer",
+      "astrolabe",
+      "gyroscope"
+    ]
+  },
+  {
+    "word": "set square",
+    "glyph": "📐",
+    "cn": "三角尺",
+    "cnStatus": "checked",
+    "distractorGroup": "science",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "protractor",
+      "T-square",
+      "ruler",
+      "drafting compass"
+    ]
+  },
+  {
+    "word": "stethoscope",
+    "glyph": "🩺",
+    "cn": "听诊器",
+    "cnStatus": "checked",
+    "distractorGroup": "science",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "periscope",
+      "headphones",
+      "otoscope",
+      "catheter"
+    ]
+  },
+  {
+    "word": "lungs",
+    "glyph": "🫁",
+    "cn": "肺",
+    "cnStatus": "checked",
+    "distractorGroup": "science",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "kidneys",
+      "liver",
+      "bronchi",
+      "spleen"
+    ]
+  },
+  {
+    "word": "hourglass",
+    "glyph": "⌛",
+    "cn": "沙漏",
+    "cnStatus": "checked",
+    "distractorGroup": "time",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "stopwatch",
+      "sundial",
+      "metronome",
+      "egg timer"
+    ]
+  },
+  {
+    "word": "stopwatch",
+    "glyph": "⏱️",
+    "cn": "秒表",
+    "cnStatus": "checked",
+    "distractorGroup": "time",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "pocket watch",
+      "metronome",
+      "compass",
+      "pressure gauge"
+    ]
+  },
+  {
+    "word": "alarm clock",
+    "glyph": "⏰",
+    "cn": "闹钟",
+    "cnStatus": "checked",
+    "distractorGroup": "time",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "mantel clock",
+      "kitchen timer",
+      "cuckoo clock",
+      "doorbell"
+    ]
+  },
+  {
+    "word": "mantel clock",
+    "glyph": "🕰️",
+    "cn": "座钟",
+    "cnStatus": "checked",
+    "distractorGroup": "time",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "grandfather clock",
+      "cuckoo clock",
+      "metronome",
+      "barometer"
+    ]
+  },
+  {
+    "word": "anchor",
+    "glyph": "⚓",
+    "cn": "锚",
+    "cnStatus": "checked",
+    "distractorGroup": "tools",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "grappling hook",
+      "harpoon",
+      "pickaxe",
+      "buoy"
+    ]
+  },
+  {
+    "word": "trident",
+    "glyph": "🔱",
+    "cn": "三叉戟",
+    "cnStatus": "checked",
+    "distractorGroup": "tools",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "pitchfork",
+      "harpoon",
+      "spear",
+      "scepter"
+    ]
+  },
+  {
+    "word": "pickaxe",
+    "glyph": "⛏️",
+    "cn": "鹤嘴锄",
+    "cnStatus": "checked",
+    "distractorGroup": "tools",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "hoe",
+      "crowbar",
+      "mattock",
+      "sickle"
+    ]
+  },
+  {
+    "word": "plunger",
+    "glyph": "🪠",
+    "cn": "搋子",
+    "cnStatus": "checked",
+    "distractorGroup": "tools",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "funnel",
+      "suction cup",
+      "ladle",
+      "mallet"
+    ]
+  },
+  {
+    "word": "mousetrap",
+    "glyph": "🪤",
+    "cn": "捕鼠器",
+    "cnStatus": "checked",
+    "distractorGroup": "tools",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "snare",
+      "cage",
+      "clipboard",
+      "stapler"
+    ]
+  },
+  {
+    "word": "fire extinguisher",
+    "glyph": "🧯",
+    "cn": "灭火器",
+    "cnStatus": "checked",
+    "distractorGroup": "tools",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "oxygen tank",
+      "hydrant",
+      "scuba tank",
+      "canister"
+    ]
+  },
+  {
+    "word": "bow and arrow",
+    "glyph": "🏹",
+    "cn": "弓箭",
+    "cnStatus": "checked",
+    "distractorGroup": "tools",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "crossbow",
+      "slingshot",
+      "javelin",
+      "harpoon"
+    ]
+  },
+  {
+    "word": "shield",
+    "glyph": "🛡️",
+    "cn": "盾牌",
+    "cnStatus": "checked",
+    "distractorGroup": "tools",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "breastplate",
+      "crest",
+      "helmet",
+      "buckler"
+    ]
+  },
+  {
+    "word": "boomerang",
+    "glyph": "🪃",
+    "cn": "回旋镖",
+    "cnStatus": "checked",
+    "distractorGroup": "tools",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "frisbee",
+      "slingshot",
+      "javelin",
+      "crossbow"
+    ]
+  },
+  {
+    "word": "military helmet",
+    "glyph": "🪖",
+    "cn": "钢盔",
+    "cnStatus": "checked",
+    "distractorGroup": "tools",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "hard hat",
+      "crash helmet",
+      "pith helmet",
+      "beret"
+    ]
+  },
+  {
+    "word": "oil lamp",
+    "glyph": "🪔",
+    "cn": "油灯",
+    "cnStatus": "checked",
+    "distractorGroup": "home",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "candle",
+      "censer",
+      "lantern",
+      "teacup"
+    ]
+  },
+  {
+    "word": "paper lantern",
+    "glyph": "🏮",
+    "cn": "灯笼",
+    "cnStatus": "checked",
+    "distractorGroup": "home",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "lampshade",
+      "chandelier",
+      "wind chime",
+      "parasol"
+    ]
+  },
+  {
+    "word": "spool of thread",
+    "glyph": "🧵",
+    "cn": "线轴",
+    "cnStatus": "checked",
+    "distractorGroup": "home",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "skein of yarn",
+      "ribbon",
+      "twine",
+      "cocoon"
+    ]
+  },
+  {
+    "word": "sewing needle",
+    "glyph": "🪡",
+    "cn": "缝衣针",
+    "cnStatus": "checked",
+    "distractorGroup": "home",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "pin",
+      "awl",
+      "bodkin",
+      "crochet hook"
+    ]
+  },
+  {
+    "word": "honey pot",
+    "glyph": "🍯",
+    "cn": "蜜罐",
+    "cnStatus": "checked",
+    "distractorGroup": "home",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "jam jar",
+      "canister",
+      "urn",
+      "cookie jar"
+    ]
+  },
+  {
+    "word": "wind chime",
+    "glyph": "🎐",
+    "cn": "风铃",
+    "cnStatus": "checked",
+    "distractorGroup": "home",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "mobile",
+      "dreamcatcher",
+      "sleigh bell",
+      "pendulum"
+    ]
+  },
+  {
+    "word": "filing cabinet",
+    "glyph": "🗄️",
+    "cn": "文件柜",
+    "cnStatus": "checked",
+    "distractorGroup": "home",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "chest of drawers",
+      "safe",
+      "locker",
+      "dresser"
+    ]
+  },
+  {
+    "word": "skeleton key",
+    "glyph": "🗝️",
+    "cn": "万能钥匙",
+    "cnStatus": "checked",
+    "distractorGroup": "home",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "padlock",
+      "corkscrew",
+      "tuning fork",
+      "keyhole"
+    ]
+  },
+  {
+    "word": "crystal ball",
+    "glyph": "🔮",
+    "cn": "水晶球",
+    "cnStatus": "checked",
+    "distractorGroup": "home",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "snow globe",
+      "marble",
+      "orb",
+      "fishbowl"
+    ]
+  },
+  {
+    "word": "prayer beads",
+    "glyph": "📿",
+    "cn": "念珠",
+    "cnStatus": "checked",
+    "distractorGroup": "home",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "necklace",
+      "bracelet",
+      "garland",
+      "abacus"
+    ]
+  },
+  {
+    "word": "funeral urn",
+    "glyph": "⚱️",
+    "cn": "骨灰瓮",
+    "cnStatus": "checked",
+    "distractorGroup": "home",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "vase",
+      "chalice",
+      "decanter",
+      "amphora"
+    ]
+  },
+  {
+    "word": "amphora",
+    "glyph": "🏺",
+    "cn": "双耳瓶",
+    "cnStatus": "checked",
+    "distractorGroup": "home",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "urn",
+      "jug",
+      "decanter",
+      "vase"
+    ]
+  },
+  {
+    "word": "headstone",
+    "glyph": "🪦",
+    "cn": "墓碑",
+    "cnStatus": "checked",
+    "distractorGroup": "home",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "obelisk",
+      "plaque",
+      "monument",
+      "tablet"
+    ]
+  },
+  {
+    "word": "scroll",
+    "glyph": "📜",
+    "cn": "卷轴",
+    "cnStatus": "checked",
+    "distractorGroup": "office",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "parchment",
+      "manuscript",
+      "diploma",
+      "papyrus"
+    ]
+  },
+  {
+    "word": "fountain pen",
+    "glyph": "🖋️",
+    "cn": "钢笔",
+    "cnStatus": "checked",
+    "distractorGroup": "office",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "quill",
+      "stylus",
+      "calligraphy brush",
+      "ballpoint"
+    ]
+  },
+  {
+    "word": "ballot box",
+    "glyph": "🗳️",
+    "cn": "投票箱",
+    "cnStatus": "checked",
+    "distractorGroup": "office",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "mailbox",
+      "safe",
+      "tip jar",
+      "lockbox"
+    ]
+  },
+  {
+    "word": "placard",
+    "glyph": "🪧",
+    "cn": "标语牌",
+    "cnStatus": "checked",
+    "distractorGroup": "office",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "billboard",
+      "signpost",
+      "banner",
+      "easel"
+    ]
+  },
+  {
+    "word": "floppy disk",
+    "glyph": "💾",
+    "cn": "软盘",
+    "cnStatus": "checked",
+    "distractorGroup": "office",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "cassette",
+      "cartridge",
+      "microchip",
+      "CD-ROM"
+    ]
+  },
+  {
+    "word": "videocassette",
+    "glyph": "📼",
+    "cn": "录像带",
+    "cnStatus": "checked",
+    "distractorGroup": "office",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "floppy disk",
+      "cartridge",
+      "film reel",
+      "audiocassette"
+    ]
+  },
+  {
+    "word": "film strip",
+    "glyph": "🎞️",
+    "cn": "胶片",
+    "cnStatus": "checked",
+    "distractorGroup": "office",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "negative",
+      "film reel",
+      "slide",
+      "ticket"
+    ]
+  },
+  {
+    "word": "clapperboard",
+    "glyph": "🎬",
+    "cn": "场记板",
+    "cnStatus": "checked",
+    "distractorGroup": "office",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "easel",
+      "clipboard",
+      "scoreboard",
+      "chalkboard"
+    ]
+  },
+  {
+    "word": "film projector",
+    "glyph": "📽️",
+    "cn": "放映机",
+    "cnStatus": "checked",
+    "distractorGroup": "office",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "camcorder",
+      "typewriter",
+      "gramophone",
+      "slide viewer"
+    ]
+  },
+  {
+    "word": "trackball",
+    "glyph": "🖲️",
+    "cn": "轨迹球",
+    "cnStatus": "checked",
+    "distractorGroup": "office",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "joystick",
+      "touchpad",
+      "dial",
+      "mouse"
+    ]
+  },
+  {
+    "word": "fax machine",
+    "glyph": "📠",
+    "cn": "传真机",
+    "cnStatus": "checked",
+    "distractorGroup": "office",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "printer",
+      "photocopier",
+      "typewriter",
+      "scanner"
+    ]
+  },
+  {
+    "word": "pager",
+    "glyph": "📟",
+    "cn": "寻呼机",
+    "cnStatus": "checked",
+    "distractorGroup": "office",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "walkie-talkie",
+      "calculator",
+      "transistor radio",
+      "Walkman"
+    ]
+  },
+  {
+    "word": "satellite dish",
+    "glyph": "📡",
+    "cn": "卫星天线",
+    "cnStatus": "checked",
+    "distractorGroup": "office",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "radar",
+      "antenna",
+      "telescope",
+      "parabolic mirror"
+    ]
+  },
+  {
+    "word": "megaphone",
+    "glyph": "📣",
+    "cn": "扩音器",
+    "cnStatus": "checked",
+    "distractorGroup": "office",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "microphone",
+      "loudspeaker",
+      "foghorn",
+      "ear trumpet"
+    ]
+  },
+  {
+    "word": "service bell",
+    "glyph": "🛎️",
+    "cn": "服务铃",
+    "cnStatus": "checked",
+    "distractorGroup": "office",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "doorbell",
+      "gong",
+      "chime",
+      "buzzer"
+    ]
+  },
+  {
+    "word": "saxophone",
+    "glyph": "🎷",
+    "cn": "萨克斯管",
+    "cnStatus": "checked",
+    "distractorGroup": "music",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "clarinet",
+      "trumpet",
+      "bassoon",
+      "oboe"
+    ]
+  },
+  {
+    "word": "trumpet",
+    "glyph": "🎺",
+    "cn": "小号",
+    "cnStatus": "checked",
+    "distractorGroup": "music",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "trombone",
+      "cornet",
+      "bugle",
+      "flugelhorn"
+    ]
+  },
+  {
+    "word": "violin",
+    "glyph": "🎻",
+    "cn": "小提琴",
+    "cnStatus": "checked",
+    "distractorGroup": "music",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "viola",
+      "cello",
+      "mandolin",
+      "lute"
+    ]
+  },
+  {
+    "word": "accordion",
+    "glyph": "🪗",
+    "cn": "手风琴",
+    "cnStatus": "checked",
+    "distractorGroup": "music",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "concertina",
+      "harmonica",
+      "bagpipes",
+      "harmonium"
+    ]
+  },
+  {
+    "word": "banjo",
+    "glyph": "🪕",
+    "cn": "班卓琴",
+    "cnStatus": "checked",
+    "distractorGroup": "music",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "mandolin",
+      "ukulele",
+      "lute",
+      "sitar"
+    ]
+  },
+  {
+    "word": "postal horn",
+    "glyph": "📯",
+    "cn": "邮政号角",
+    "cnStatus": "checked",
+    "distractorGroup": "music",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "bugle",
+      "French horn",
+      "cornet",
+      "trombone"
+    ]
+  },
+  {
+    "word": "volcano",
+    "glyph": "🌋",
+    "cn": "火山",
+    "cnStatus": "checked",
+    "distractorGroup": "places",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "geyser",
+      "crater",
+      "mesa",
+      "glacier"
+    ]
+  },
+  {
+    "word": "desert island",
+    "glyph": "🏝️",
+    "cn": "荒岛",
+    "cnStatus": "checked",
+    "distractorGroup": "places",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "atoll",
+      "peninsula",
+      "lagoon",
+      "archipelago"
+    ]
+  },
+  {
+    "word": "mosque",
+    "glyph": "🕌",
+    "cn": "清真寺",
+    "cnStatus": "checked",
+    "distractorGroup": "places",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "synagogue",
+      "cathedral",
+      "temple",
+      "palace"
+    ]
+  },
+  {
+    "word": "synagogue",
+    "glyph": "🕍",
+    "cn": "犹太会堂",
+    "cnStatus": "checked",
+    "distractorGroup": "places",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "mosque",
+      "chapel",
+      "cathedral",
+      "temple"
+    ]
+  },
+  {
+    "word": "torii gate",
+    "glyph": "⛩️",
+    "cn": "鸟居",
+    "cnStatus": "checked",
+    "distractorGroup": "places",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "pagoda",
+      "archway",
+      "pavilion",
+      "portico"
+    ]
+  },
+  {
+    "word": "stadium",
+    "glyph": "🏟️",
+    "cn": "体育场",
+    "cnStatus": "checked",
+    "distractorGroup": "places",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "amphitheater",
+      "colosseum",
+      "racetrack",
+      "gymnasium"
+    ]
+  },
+  {
+    "word": "Ferris wheel",
+    "glyph": "🎡",
+    "cn": "摩天轮",
+    "cnStatus": "checked",
+    "distractorGroup": "places",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "carousel",
+      "roller coaster",
+      "waterwheel",
+      "windmill"
+    ]
+  },
+  {
+    "word": "Milky Way",
+    "glyph": "🌌",
+    "cn": "银河",
+    "cnStatus": "checked",
+    "distractorGroup": "places",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "nebula",
+      "aurora",
+      "comet",
+      "constellation"
+    ]
+  },
+  {
+    "word": "comet",
+    "glyph": "☄️",
+    "cn": "彗星",
+    "cnStatus": "checked",
+    "distractorGroup": "places",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "meteor",
+      "asteroid",
+      "meteorite",
+      "satellite"
+    ]
+  },
+  {
+    "word": "tornado",
+    "glyph": "🌪️",
+    "cn": "龙卷风",
+    "cnStatus": "checked",
+    "distractorGroup": "places",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "hurricane",
+      "whirlpool",
+      "typhoon",
+      "sandstorm"
+    ]
+  },
+  {
+    "word": "sheaf of rice",
+    "glyph": "🌾",
+    "cn": "稻穗",
+    "cnStatus": "checked",
+    "distractorGroup": "places",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "wheat",
+      "barley",
+      "millet",
+      "oats"
+    ]
+  },
+  {
+    "word": "cable car",
+    "glyph": "🚠",
+    "cn": "缆车",
+    "cnStatus": "checked",
+    "distractorGroup": "transport",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "funicular",
+      "chairlift",
+      "monorail",
+      "tram"
+    ]
+  },
+  {
+    "word": "canoe",
+    "glyph": "🛶",
+    "cn": "独木舟",
+    "cnStatus": "checked",
+    "distractorGroup": "transport",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "kayak",
+      "raft",
+      "gondola",
+      "dinghy"
+    ]
+  },
+  {
+    "word": "ferry",
+    "glyph": "⛴️",
+    "cn": "渡轮",
+    "cnStatus": "checked",
+    "distractorGroup": "transport",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "tugboat",
+      "barge",
+      "freighter",
+      "steamer"
+    ]
+  },
+  {
+    "word": "ocean liner",
+    "glyph": "🚢",
+    "cn": "远洋客轮",
+    "cnStatus": "checked",
+    "distractorGroup": "transport",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "freighter",
+      "battleship",
+      "ferry",
+      "tanker"
+    ]
+  },
+  {
+    "word": "monorail",
+    "glyph": "🚝",
+    "cn": "单轨列车",
+    "cnStatus": "checked",
+    "distractorGroup": "transport",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "tram",
+      "funicular",
+      "maglev",
+      "subway"
+    ]
+  },
+  {
+    "word": "steam locomotive",
+    "glyph": "🚂",
+    "cn": "蒸汽机车",
+    "cnStatus": "checked",
+    "distractorGroup": "transport",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "diesel engine",
+      "tram",
+      "caboose",
+      "trolley"
+    ]
+  },
+  {
+    "word": "parachute",
+    "glyph": "🪂",
+    "cn": "降落伞",
+    "cnStatus": "checked",
+    "distractorGroup": "transport",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "hang glider",
+      "paraglider",
+      "hot-air balloon",
+      "kite"
+    ]
+  },
+  {
+    "word": "flying saucer",
+    "glyph": "🛸",
+    "cn": "飞碟",
+    "cnStatus": "checked",
+    "distractorGroup": "transport",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "satellite",
+      "space probe",
+      "blimp",
+      "frisbee"
+    ]
+  },
+  {
+    "word": "kick scooter",
+    "glyph": "🛴",
+    "cn": "滑板车",
+    "cnStatus": "checked",
+    "distractorGroup": "transport",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "skateboard",
+      "unicycle",
+      "moped",
+      "Segway"
+    ]
+  },
+  {
+    "word": "ice skate",
+    "glyph": "⛸️",
+    "cn": "溜冰鞋",
+    "cnStatus": "checked",
+    "distractorGroup": "transport",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "roller skate",
+      "ski boot",
+      "snowshoe",
+      "crampon"
+    ]
+  },
+  {
+    "word": "sled",
+    "glyph": "🛷",
+    "cn": "雪橇",
+    "cnStatus": "checked",
+    "distractorGroup": "transport",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "snowboard",
+      "skis",
+      "snowmobile",
+      "wheelbarrow"
+    ]
+  },
+  {
+    "word": "fuel pump",
+    "glyph": "⛽",
+    "cn": "加油泵",
+    "cnStatus": "checked",
+    "distractorGroup": "transport",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "parking meter",
+      "vending machine",
+      "fire hydrant",
+      "charging station"
+    ]
+  },
+  {
+    "word": "barricade",
+    "glyph": "🚧",
+    "cn": "路障",
+    "cnStatus": "checked",
+    "distractorGroup": "transport",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "turnstile",
+      "guardrail",
+      "tollgate",
+      "scaffold"
+    ]
+  },
+  {
+    "word": "curling stone",
+    "glyph": "🥌",
+    "cn": "冰壶",
+    "cnStatus": "checked",
+    "distractorGroup": "play",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "kettlebell",
+      "discus",
+      "hockey puck",
+      "bowling ball"
+    ]
+  },
+  {
+    "word": "yo-yo",
+    "glyph": "🪀",
+    "cn": "悠悠球",
+    "cnStatus": "checked",
+    "distractorGroup": "play",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "spinning top",
+      "diabolo",
+      "frisbee",
+      "pulley"
+    ]
+  },
+  {
+    "word": "lacrosse stick",
+    "glyph": "🥍",
+    "cn": "长曲棍球棍",
+    "cnStatus": "checked",
+    "distractorGroup": "play",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "hockey stick",
+      "butterfly net",
+      "racket",
+      "polo mallet"
+    ]
+  },
+  {
+    "word": "diving mask",
+    "glyph": "🤿",
+    "cn": "潜水面罩",
+    "cnStatus": "checked",
+    "distractorGroup": "play",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "goggles",
+      "gas mask",
+      "visor",
+      "respirator"
+    ]
+  },
+  {
+    "word": "theater masks",
+    "glyph": "🎭",
+    "cn": "戏剧面具",
+    "cnStatus": "checked",
+    "distractorGroup": "play",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "masquerade",
+      "puppets",
+      "mime",
+      "costume"
+    ]
+  },
+  {
+    "word": "artist's palette",
+    "glyph": "🎨",
+    "cn": "调色板",
+    "cnStatus": "checked",
+    "distractorGroup": "play",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "easel",
+      "canvas",
+      "swatch",
+      "mosaic"
+    ]
+  },
+  {
+    "word": "slot machine",
+    "glyph": "🎰",
+    "cn": "老虎机",
+    "cnStatus": "checked",
+    "distractorGroup": "play",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "jukebox",
+      "vending machine",
+      "cash register",
+      "pinball machine"
+    ]
+  },
+  {
+    "word": "billiard ball",
+    "glyph": "🎱",
+    "cn": "台球",
+    "cnStatus": "checked",
+    "distractorGroup": "play",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "bowling ball",
+      "marble",
+      "croquet ball",
+      "hockey puck"
+    ]
+  },
+  {
+    "word": "jigsaw puzzle",
+    "glyph": "🧩",
+    "cn": "拼图",
+    "cnStatus": "checked",
+    "distractorGroup": "play",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "crossword",
+      "mosaic",
+      "tangram",
+      "Rubik's cube"
+    ]
+  },
+  {
+    "word": "chess pawn",
+    "glyph": "♟️",
+    "cn": "国际象棋兵",
+    "cnStatus": "checked",
+    "distractorGroup": "play",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "bishop",
+      "rook",
+      "knight",
+      "king"
+    ]
+  },
+  {
+    "word": "piñata",
+    "glyph": "🪅",
+    "cn": "皮纳塔",
+    "cnStatus": "checked",
+    "distractorGroup": "play",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "kite",
+      "paper lantern",
+      "scarecrow",
+      "effigy"
+    ]
+  },
+  {
+    "word": "nesting dolls",
+    "glyph": "🪆",
+    "cn": "套娃",
+    "cnStatus": "checked",
+    "distractorGroup": "play",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "figurines",
+      "marionettes",
+      "bowling pins",
+      "totem"
+    ]
+  },
+  {
+    "word": "kimono",
+    "glyph": "👘",
+    "cn": "和服",
+    "cnStatus": "checked",
+    "distractorGroup": "clothing",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "sari",
+      "robe",
+      "poncho",
+      "tunic"
+    ]
+  },
+  {
+    "word": "sari",
+    "glyph": "🥻",
+    "cn": "纱丽",
+    "cnStatus": "checked",
+    "distractorGroup": "clothing",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "kimono",
+      "toga",
+      "sarong",
+      "shawl"
+    ]
+  },
+  {
+    "word": "mortarboard",
+    "glyph": "🎓",
+    "cn": "学位帽",
+    "cnStatus": "checked",
+    "distractorGroup": "clothing",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "beret",
+      "fez",
+      "biretta",
+      "beanie"
+    ]
+  },
+  {
+    "word": "lab coat",
+    "glyph": "🥼",
+    "cn": "实验服",
+    "cnStatus": "checked",
+    "distractorGroup": "clothing",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "apron",
+      "smock",
+      "robe",
+      "scrubs"
+    ]
+  },
+  {
+    "word": "safety vest",
+    "glyph": "🦺",
+    "cn": "安全背心",
+    "cnStatus": "checked",
+    "distractorGroup": "clothing",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "life jacket",
+      "waistcoat",
+      "apron",
+      "bib"
+    ]
+  },
+  {
+    "word": "flip-flop",
+    "glyph": "🩴",
+    "cn": "人字拖",
+    "cnStatus": "checked",
+    "distractorGroup": "clothing",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "sandal",
+      "clog",
+      "slipper",
+      "moccasin"
+    ]
+  },
+  {
+    "word": "hiking boot",
+    "glyph": "🥾",
+    "cn": "登山靴",
+    "cnStatus": "checked",
+    "distractorGroup": "clothing",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "sneaker",
+      "clog",
+      "moccasin",
+      "ski boot"
+    ]
+  },
+  {
+    "word": "ballet shoes",
+    "glyph": "🩰",
+    "cn": "芭蕾舞鞋",
+    "cnStatus": "checked",
+    "distractorGroup": "clothing",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "slippers",
+      "espadrilles",
+      "moccasins",
+      "sandals"
+    ]
+  },
+  {
+    "word": "military medal",
+    "glyph": "🎖️",
+    "cn": "勋章",
+    "cnStatus": "checked",
+    "distractorGroup": "clothing",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "badge",
+      "rosette",
+      "ribbon",
+      "pin"
+    ]
+  },
+  {
+    "word": "baguette",
+    "glyph": "🥖",
+    "cn": "法棍",
+    "cnStatus": "checked",
+    "distractorGroup": "food",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "ciabatta",
+      "breadstick",
+      "brioche",
+      "focaccia"
+    ]
+  },
+  {
+    "word": "falafel",
+    "glyph": "🧆",
+    "cn": "炸豆丸子",
+    "cnStatus": "checked",
+    "distractorGroup": "food",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "meatball",
+      "croquette",
+      "fritter",
+      "dumpling"
+    ]
+  },
+  {
+    "word": "dumpling",
+    "glyph": "🥟",
+    "cn": "饺子",
+    "cnStatus": "checked",
+    "distractorGroup": "food",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "empanada",
+      "ravioli",
+      "samosa",
+      "pierogi"
+    ]
+  },
+  {
+    "word": "fortune cookie",
+    "glyph": "🥠",
+    "cn": "幸运饼干",
+    "cnStatus": "checked",
+    "distractorGroup": "food",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "wafer",
+      "cracker",
+      "biscotti",
+      "dumpling"
+    ]
+  },
+  {
+    "word": "bento box",
+    "glyph": "🍱",
+    "cn": "便当",
+    "cnStatus": "checked",
+    "distractorGroup": "food",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "tiffin",
+      "platter",
+      "tray",
+      "lunchbox"
+    ]
+  },
+  {
+    "word": "mooncake",
+    "glyph": "🥮",
+    "cn": "月饼",
+    "cnStatus": "checked",
+    "distractorGroup": "food",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "tart",
+      "scone",
+      "pastry",
+      "cookie"
+    ]
+  },
+  {
+    "word": "tamale",
+    "glyph": "🫔",
+    "cn": "墨西哥粽",
+    "cnStatus": "checked",
+    "distractorGroup": "food",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "burrito",
+      "enchilada",
+      "empanada",
+      "taco"
+    ]
+  },
+  {
+    "word": "fondue",
+    "glyph": "🫕",
+    "cn": "奶酪火锅",
+    "cnStatus": "checked",
+    "distractorGroup": "food",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "hot pot",
+      "cauldron",
+      "casserole",
+      "soufflé"
+    ]
+  },
+  {
+    "word": "bubble tea",
+    "glyph": "🧋",
+    "cn": "珍珠奶茶",
+    "cnStatus": "checked",
+    "distractorGroup": "food",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "smoothie",
+      "milkshake",
+      "latte",
+      "frappé"
+    ]
+  },
+  {
+    "word": "chestnut",
+    "glyph": "🌰",
+    "cn": "栗子",
+    "cnStatus": "checked",
+    "distractorGroup": "food",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "acorn",
+      "hazelnut",
+      "walnut",
+      "conker"
+    ]
+  },
+  {
+    "word": "oyster",
+    "glyph": "🦪",
+    "cn": "牡蛎",
+    "cnStatus": "checked",
+    "distractorGroup": "food",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "clam",
+      "mussel",
+      "scallop",
+      "abalone"
+    ]
+  },
+  {
+    "word": "squid",
+    "glyph": "🦑",
+    "cn": "鱿鱼",
+    "cnStatus": "checked",
+    "distractorGroup": "food",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "octopus",
+      "cuttlefish",
+      "jellyfish",
+      "nautilus"
+    ]
+  },
+  {
+    "word": "flamingo",
+    "glyph": "🦩",
+    "cn": "火烈鸟",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "heron",
+      "stork",
+      "crane",
+      "egret"
+    ]
+  },
+  {
+    "word": "peacock",
+    "glyph": "🦚",
+    "cn": "孔雀",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "pheasant",
+      "turkey",
+      "quetzal",
+      "lyrebird"
+    ]
+  },
+  {
+    "word": "parrot",
+    "glyph": "🦜",
+    "cn": "鹦鹉",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "toucan",
+      "kingfisher",
+      "hummingbird",
+      "finch"
+    ]
+  },
+  {
+    "word": "dodo",
+    "glyph": "🦤",
+    "cn": "渡渡鸟",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "kiwi",
+      "emu",
+      "puffin",
+      "ostrich"
+    ]
+  },
+  {
+    "word": "hedgehog",
+    "glyph": "🦔",
+    "cn": "刺猬",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "porcupine",
+      "echidna",
+      "armadillo",
+      "shrew"
+    ]
+  },
+  {
+    "word": "sloth",
+    "glyph": "🦥",
+    "cn": "树懒",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "koala",
+      "lemur",
+      "anteater",
+      "orangutan"
+    ]
+  },
+  {
+    "word": "otter",
+    "glyph": "🦦",
+    "cn": "水獭",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "beaver",
+      "ferret",
+      "weasel",
+      "mink"
+    ]
+  },
+  {
+    "word": "skunk",
+    "glyph": "🦨",
+    "cn": "臭鼬",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "badger",
+      "raccoon",
+      "polecat",
+      "civet"
+    ]
+  },
+  {
+    "word": "badger",
+    "glyph": "🦡",
+    "cn": "獾",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "raccoon",
+      "wolverine",
+      "skunk",
+      "mole"
+    ]
+  },
+  {
+    "word": "raccoon",
+    "glyph": "🦝",
+    "cn": "浣熊",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "badger",
+      "red panda",
+      "coati",
+      "possum"
+    ]
+  },
+  {
+    "word": "beaver",
+    "glyph": "🦫",
+    "cn": "河狸",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "otter",
+      "muskrat",
+      "groundhog",
+      "capybara"
+    ]
+  },
+  {
+    "word": "llama",
+    "glyph": "🦙",
+    "cn": "美洲驼",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "alpaca",
+      "camel",
+      "vicuña",
+      "guanaco"
+    ]
+  },
+  {
+    "word": "dromedary",
+    "glyph": "🐪",
+    "cn": "单峰骆驼",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "llama",
+      "alpaca",
+      "oryx",
+      "gazelle"
+    ]
+  },
+  {
+    "word": "hippopotamus",
+    "glyph": "🦛",
+    "cn": "河马",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "rhinoceros",
+      "tapir",
+      "manatee",
+      "walrus"
+    ]
+  },
+  {
+    "word": "rhinoceros",
+    "glyph": "🦏",
+    "cn": "犀牛",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "hippopotamus",
+      "tapir",
+      "boar",
+      "triceratops"
+    ]
+  },
+  {
+    "word": "mammoth",
+    "glyph": "🦣",
+    "cn": "猛犸象",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "mastodon",
+      "elephant",
+      "bison",
+      "yak"
+    ]
+  },
+  {
+    "word": "bison",
+    "glyph": "🦬",
+    "cn": "野牛",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "yak",
+      "musk ox",
+      "wildebeest",
+      "moose"
+    ]
+  },
+  {
+    "word": "orangutan",
+    "glyph": "🦧",
+    "cn": "红毛猩猩",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "gorilla",
+      "chimpanzee",
+      "baboon",
+      "gibbon"
+    ]
+  },
+  {
+    "word": "ram",
+    "glyph": "🐏",
+    "cn": "公羊",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "goat",
+      "ewe",
+      "ibex",
+      "antelope"
+    ]
+  },
+  {
+    "word": "boar",
+    "glyph": "🐗",
+    "cn": "野猪",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "warthog",
+      "tapir",
+      "peccary",
+      "hog"
+    ]
+  },
+  {
+    "word": "chipmunk",
+    "glyph": "🐿️",
+    "cn": "花栗鼠",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "squirrel",
+      "hamster",
+      "gopher",
+      "marmot"
+    ]
+  },
+  {
+    "word": "lizard",
+    "glyph": "🦎",
+    "cn": "蜥蜴",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "salamander",
+      "newt",
+      "skink",
+      "chameleon"
+    ]
+  },
+  {
+    "word": "crocodile",
+    "glyph": "🐊",
+    "cn": "鳄鱼",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "alligator",
+      "caiman",
+      "gharial",
+      "iguana"
+    ]
+  },
+  {
+    "word": "sauropod",
+    "glyph": "🦕",
+    "cn": "蜥脚类恐龙",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "stegosaurus",
+      "triceratops",
+      "iguanodon",
+      "pterodactyl"
+    ]
+  },
+  {
+    "word": "tyrannosaurus",
+    "glyph": "🦖",
+    "cn": "霸王龙",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "velociraptor",
+      "allosaurus",
+      "triceratops",
+      "stegosaurus"
+    ]
+  },
+  {
+    "word": "scorpion",
+    "glyph": "🦂",
+    "cn": "蝎子",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "tarantula",
+      "crayfish",
+      "centipede",
+      "mantis"
+    ]
+  },
+  {
+    "word": "cricket",
+    "glyph": "🦗",
+    "cn": "蟋蟀",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "grasshopper",
+      "locust",
+      "katydid",
+      "cicada"
+    ]
+  },
+  {
+    "word": "earthworm",
+    "glyph": "🪱",
+    "cn": "蚯蚓",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "leech",
+      "caterpillar",
+      "maggot",
+      "eel"
+    ]
+  },
+  {
+    "word": "conch",
+    "glyph": "🐚",
+    "cn": "海螺",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "whelk",
+      "nautilus",
+      "scallop",
+      "cowrie"
+    ]
+  },
+  {
+    "word": "seal",
+    "glyph": "🦭",
+    "cn": "海豹",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "sea lion",
+      "walrus",
+      "manatee",
+      "otter"
+    ]
+  },
+  {
+    "word": "pufferfish",
+    "glyph": "🐡",
+    "cn": "河豚",
+    "cnStatus": "checked",
+    "distractorGroup": "animals",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "anglerfish",
+      "sunfish",
+      "boxfish",
+      "lionfish"
+    ]
+  },
+  {
+    "word": "cactus",
+    "glyph": "🌵",
+    "cn": "仙人掌",
+    "cnStatus": "checked",
+    "distractorGroup": "plants",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "agave",
+      "aloe",
+      "yucca",
+      "sisal"
+    ]
+  },
+  {
+    "word": "four-leaf clover",
+    "glyph": "🍀",
+    "cn": "四叶草",
+    "cnStatus": "checked",
+    "distractorGroup": "plants",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "shamrock",
+      "sorrel",
+      "oxalis",
+      "trefoil"
+    ]
+  },
+  {
+    "word": "maple leaf",
+    "glyph": "🍁",
+    "cn": "枫叶",
+    "cnStatus": "checked",
+    "distractorGroup": "plants",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "oak leaf",
+      "ivy leaf",
+      "fern",
+      "sycamore leaf"
+    ]
+  },
+  {
+    "word": "cherry blossom",
+    "glyph": "🌸",
+    "cn": "樱花",
+    "cnStatus": "checked",
+    "distractorGroup": "plants",
+    "level": 2,
+    "symbol": "",
+    "distractors": [
+      "plum blossom",
+      "magnolia",
+      "apple blossom",
+      "jasmine"
+    ]
+  },
+  {
+    "word": "fleur-de-lis",
+    "glyph": "⚜️",
+    "cn": "鸢尾花纹",
+    "cnStatus": "checked",
+    "distractorGroup": "home",
+    "level": 3,
+    "symbol": "",
+    "distractors": [
+      "trefoil",
+      "crest",
+      "insignia",
+      "tiara"
+    ]
+  }
+]
