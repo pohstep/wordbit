@@ -55,9 +55,7 @@ struct SavedView: View {
                     .fill(Theme.Palette.hoverFill)
             )
             if model.disk.saved.isEmpty {
-                Text("No saved words yet.")
-                    .font(Theme.Typeface.body)
-                    .foregroundColor(Theme.Palette.ink)
+                EmptyTabHint()
                     .padding(.top, Theme.Space.xs)
                 Text("Tap the star on a word to keep it here.")
                     .font(Theme.Typeface.caption)
@@ -133,6 +131,7 @@ struct SettingsView: View {
         ScrollView {
             VStack(spacing: Theme.Metrics.cardGap) {
                 languageCard
+                timeZoneCard
                 speechCard
                 reminderCard
                 loginCard
@@ -262,6 +261,35 @@ struct SettingsView: View {
         return "Fast"
     }
 
+    private var timeZoneCard: some View {
+        VStack(alignment: .leading, spacing: Theme.Space.s) {
+            Text("Time zone")
+                .font(Theme.Typeface.title)
+                .foregroundColor(Theme.Palette.ink)
+            Picker("Time zone", selection: Binding(
+                get: { model.disk.settings.timeZoneChoice == "china" ? "china" : "local" },
+                set: { model.setTimeZoneChoice($0) }
+            )) {
+                Text("My time zone").tag("local")
+                Text("China time").tag("china")
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .labelsHidden()
+            Text(timeZoneCaption)
+                .font(Theme.Typeface.caption)
+                .foregroundColor(Theme.Palette.inkSecondary)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .neutralCard()
+    }
+
+    private var timeZoneCaption: String {
+        if model.disk.settings.timeZoneChoice == "china" {
+            return "The new word arrives at midnight in China (Asia/Shanghai)."
+        }
+        return "The new word arrives at midnight on this Mac."
+    }
+
     private var reminderCard: some View {
         VStack(alignment: .leading, spacing: Theme.Space.s) {
             Text("Daily reminder")
@@ -271,17 +299,40 @@ struct SettingsView: View {
                 get: { model.disk.settings.dailyReminder },
                 set: { model.setReminder($0) }
             )) {
-                Text("Nudge at 8:00")
+                Text("Remind me")
                     .font(Theme.Typeface.body)
                     .foregroundColor(Theme.Palette.ink)
             }
             .toggleStyle(SwitchToggleStyle())
-            Text("Off unless you turn it on. An ad-hoc signed app may not be allowed to notify.")
+            DatePicker(
+                "Time",
+                selection: reminderTime,
+                displayedComponents: DatePickerComponents.hourAndMinute
+            )
+            .labelsHidden()
+            Text("Off unless you turn it on. macOS may block reminders; allow them in System Settings → Notifications.")
                 .font(Theme.Typeface.caption)
                 .foregroundColor(Theme.Palette.inkSecondary)
                 .fixedSize(horizontal: false, vertical: true)
         }
         .neutralCard()
+    }
+
+    private var reminderTime: Binding<Date> {
+        Binding(
+            get: {
+                var parts = DateComponents()
+                parts.hour = model.disk.settings.reminderHour
+                parts.minute = model.disk.settings.reminderMinute
+                return Calendar.current.date(from: parts) ?? Date()
+            },
+            set: { newValue in
+                let parts = Calendar.current.dateComponents([.hour, .minute], from: newValue)
+                let hour = parts.hour ?? 8
+                let minute = parts.minute ?? 0
+                model.setReminderTime(hour: hour, minute: minute)
+            }
+        )
     }
 
     private var loginCard: some View {
@@ -308,10 +359,6 @@ struct SettingsView: View {
                     .foregroundColor(Theme.Palette.danger)
                     .fixedSize(horizontal: false, vertical: true)
             }
-            Text("If the old Word of the Day still opens at login, turn it off in System Settings. macOS doesn't let a new app delete that entry.")
-                .font(Theme.Typeface.caption)
-                .foregroundColor(Theme.Palette.inkSecondary)
-                .fixedSize(horizontal: false, vertical: true)
         }
         .neutralCard()
     }
@@ -345,7 +392,7 @@ struct SettingsView: View {
     }
 
     private var version: String {
-        Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "2.0"
+        Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "2.1.0"
     }
 
     private func showLicences() {

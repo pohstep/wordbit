@@ -23,20 +23,57 @@ struct ReviewView: View {
     private var empty: some View {
         VStack(alignment: .leading, spacing: Theme.Space.s) {
             Theme.Eyebrow(text: "Review", kind: .review)
-            Text("Nothing due")
-                .font(Theme.Typeface.title)
-                .foregroundColor(Theme.Palette.ink)
-            Text("You're clear for today. Cards come back on the day they're due.")
-                .font(Theme.Typeface.body)
-                .foregroundColor(Theme.Palette.inkSecondary)
-                .fixedSize(horizontal: false, vertical: true)
-            if !model.countedToday {
-                Button("Take today's quiz") { model.show(.quiz) }
-                    .buttonStyle(Theme.SolidButtonStyle(kind: .review))
-                    .padding(.top, Theme.Space.xs)
+            if model.showDayOneHint {
+                EmptyTabHint()
+            } else {
+                Text("Nothing due")
+                    .font(Theme.Typeface.title)
+                    .foregroundColor(Theme.Palette.ink)
+                Text("You're clear for today. Cards come back on the day they're due.")
+                    .font(Theme.Typeface.body)
+                    .foregroundColor(Theme.Palette.inkSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                if !model.countedToday {
+                    Button("Take today's quiz") { model.show(.quiz) }
+                        .buttonStyle(Theme.SolidButtonStyle(kind: .review))
+                        .padding(.top, Theme.Space.xs)
+                }
             }
         }
         .glassCard(.review)
+    }
+}
+
+struct EmptyTabHint: View {
+    @EnvironmentObject var model: AppModel
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: Theme.Space.xs) {
+            Text("Nothing yet.")
+                .font(Theme.Typeface.body)
+                .foregroundColor(Theme.Palette.ink)
+            HStack(spacing: 4) {
+                Text("Try the")
+                tabLink("Quiz", tab: .quiz, kind: .quiz)
+                Text("or")
+                tabLink("Pictures", tab: .pictures, kind: .pictures)
+                Text("tab")
+            }
+            .font(Theme.Typeface.body)
+            .foregroundColor(Theme.Palette.inkSecondary)
+        }
+    }
+
+    private func tabLink(_ title: String, tab: AppTab, kind: Theme.CardKind) -> some View {
+        Button {
+            model.show(tab)
+        } label: {
+            Text(title)
+                .font(Theme.Typeface.bodyEmph)
+                .foregroundColor(kind.accentText)
+                .underline()
+        }
+        .buttonStyle(PlainButtonStyle())
     }
 }
 

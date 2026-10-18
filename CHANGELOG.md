@@ -1,5 +1,15 @@
 # Changelog
 
+## v2.1.0 — 2026-10-18
+
+- **Your time zone.** The new word and the streak follow the Mac's own time zone. Settings can switch to China time (Asia/Shanghai). Saved dates and streaks stay as plain dates, so they carry over.
+- **Reminder time.** Pick the time. The reminder stays off until you turn it on. The note now says to allow notifications in System Settings if macOS blocks them.
+- **Day-one hints.** An empty Review tab (before you have done anything) and an empty Saved tab point you to the Quiz and Pictures tabs.
+- **Universal build.** One app for Intel and Apple-chip Macs.
+- **install.sh** opens the app when it finishes, prints the macOS 15 "Open Anyway" steps, and says so when it removes the older "Word of the Day" app.
+- **Homebrew cask** recipe at `packaging/homebrew/Casks/wordbit.rb`. The download address and SHA-256 are placeholders until the v2.1.0 disk image is published.
+- Removed the Settings note about the old Word of the Day login item.
+
 ## v2.0.0 — 2026-10-18
 
 The first public release. Wordbit replaces the older "Word of the Day" app.

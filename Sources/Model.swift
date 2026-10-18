@@ -1,23 +1,52 @@
 import Foundation
 
-// MARK: - Calendar (same day index as Word of the Day v1)
+// MARK: - Calendar
+//
+// The word for a calendar date is the number of days since 2026-01-01, same
+// order as v1. "local" uses the Mac's time zone (the default). "china" uses
+// Asia/Shanghai. Saved dates are plain "yyyy-MM-dd" strings, so they carry over.
 
 enum Shanghai {
-    static let calendar: Calendar = {
-        var calendar = Calendar(identifier: .gregorian)
-        calendar.timeZone = TimeZone(identifier: "Asia/Shanghai")!
-        return calendar
-    }()
+    /// "local" or "china". Anything else is treated as local.
+    private static var choice: String = "local"
 
-    static let epoch: Date = {
-        calendar.date(from: DateComponents(year: 2026, month: 1, day: 1))!
-    }()
+    static func apply(_ choice: String) {
+        if choice == "china" {
+            self.choice = "china"
+        } else {
+            self.choice = "local"
+        }
+    }
+
+    static var timeZone: TimeZone {
+        if choice == "china" {
+            if let zone = TimeZone(identifier: "Asia/Shanghai") {
+                return zone
+            }
+        }
+        return TimeZone.current
+    }
+
+    static var calendar: Calendar {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = timeZone
+        return calendar
+    }
+
+    static var epoch: Date {
+        var parts = DateComponents()
+        parts.year = 2026
+        parts.month = 1
+        parts.day = 1
+        parts.timeZone = timeZone
+        return calendar.date(from: parts)!
+    }
 
     static func startOfDay(_ date: Date) -> Date {
         calendar.startOfDay(for: date)
     }
 
-    /// Days from 2026-01-01 in Asia/Shanghai. 1 Jan 2026 is 0, matching v1.
+    /// Days from 2026-01-01 in the active time zone. 1 Jan 2026 is 0, matching v1.
     static func dayNumber(_ date: Date) -> Int {
         calendar.dateComponents([.day], from: startOfDay(epoch), to: startOfDay(date)).day ?? 0
     }
@@ -34,7 +63,7 @@ enum Shanghai {
         components.year = parts[0]
         components.month = parts[1]
         components.day = parts[2]
-        components.timeZone = calendar.timeZone
+        components.timeZone = timeZone
         return calendar.date(from: components)
     }
 

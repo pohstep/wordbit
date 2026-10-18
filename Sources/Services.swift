@@ -71,18 +71,18 @@ final class LoginItem: ObservableObject {
 enum Reminder {
     static let identifier = "wordbit.daily"
 
-    static func restoreIfAuthorized(enabled: Bool) {
+    static func restoreIfAuthorized(enabled: Bool, hour: Int, minute: Int) {
         guard enabled else { return }
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             if settings.authorizationStatus == .authorized {
-                schedule()
+                schedule(hour: hour, minute: minute)
             }
         }
     }
 
-    static func enable(completion: @escaping (Bool) -> Void) {
+    static func enable(hour: Int, minute: Int, completion: @escaping (Bool) -> Void) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { granted, _ in
-            if granted { schedule() }
+            if granted { schedule(hour: hour, minute: minute) }
             completion(granted)
         }
     }
@@ -91,13 +91,13 @@ enum Reminder {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
     }
 
-    static func schedule() {
+    static func schedule(hour: Int, minute: Int) {
         let content = UNMutableNotificationContent()
         content.title = "Wordbit"
         content.body = "Today's word is waiting. A quiz or a review keeps the streak."
         var components = DateComponents()
-        components.hour = 8
-        components.minute = 0
+        components.hour = min(23, max(0, hour))
+        components.minute = min(59, max(0, minute))
         let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
         let center = UNUserNotificationCenter.current()
