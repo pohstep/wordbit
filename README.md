@@ -11,6 +11,7 @@
 
 <p align="center">
   <a href="#download-and-install"><b>Download</b></a> &nbsp;·&nbsp;
+  <a href="#using-it"><b>Using it</b></a> &nbsp;·&nbsp;
   <a href="#build-it-yourself"><b>Build it yourself</b></a> &nbsp;·&nbsp;
   <a href="#support"><b>Support</b></a>
 </p>
@@ -42,7 +43,7 @@ Wordbit is a small native Mac app written in Swift. There is no account, no ads 
 
 ## Download and install
 
-1. Download `Wordbit-2.0.0.dmg` from the [latest release](https://github.com/pohstep/wordbit/releases/latest).
+1. Download `Wordbit-2.1.0.dmg` from the [latest release](https://github.com/pohstep/wordbit/releases/latest).
 2. Open the `.dmg` file and drag **Wordbit** onto the **Applications** folder next to it.
 3. Open **Wordbit** from Applications. The first time, macOS stops it and says *"Apple could not verify…"*. That is because the app is free and not signed with a paid Apple developer account ([why](#why-does-macos-warn-me)). Let it through once:
    - **macOS 15 Sequoia or newer:** click **Done**. Open **System Settings → Privacy & Security**, scroll down to *"Wordbit was blocked…"*, click **Open Anyway**, and type your Mac password.
@@ -50,11 +51,21 @@ Wordbit is a small native Mac app written in Swift. There is no account, no ads 
    - **Or, in Terminal:** `xattr -dr com.apple.quarantine "/Applications/Wordbit.app"`
 4. Look for the little book in your menu bar, near the clock. There is no Dock icon and no window. Click the book.
 
-On a Mac with an Apple chip (M1 or newer), macOS may first ask to install **Rosetta**. Click **Install**. This build of the app is made for Intel Macs, and Rosetta lets it run on Apple chips. (If you [build it yourself](#build-it-yourself) on an Apple-chip Mac, you get a native version and don't need Rosetta.)
+The download is one app for Intel and Apple-chip Macs.
 
 Wordbit adds itself to **System Settings → General → Login Items** the first time it runs, so it opens when you turn on your Mac. You can switch that off in Wordbit's **Settings** tab.
 
 What's new in each version: [CHANGELOG.md](CHANGELOG.md).
+
+### Homebrew
+
+A Homebrew cask is in [`packaging/homebrew/Casks/wordbit.rb`](packaging/homebrew/Casks/wordbit.rb), ready to move into the `pohstep/homebrew-tap` repository. Its download address and SHA-256 are placeholders until the v2.1.0 `.dmg` is published. After that, and after `brew tap pohstep/tap`:
+
+```bash
+brew install --cask wordbit
+```
+
+The cask carries the same unsigned-app note: **Open Anyway** in **System Settings → Privacy & Security**, or `xattr -dr com.apple.quarantine`.
 
 ### Why does macOS warn me?
 
@@ -68,7 +79,7 @@ Open Wordbit's **Settings** tab and click **Quit Wordbit**. Drag **Wordbit** fro
 
 | | |
 | --- | --- |
-| Mac | macOS 13 Ventura or newer. Intel, or Apple chip with Rosetta |
+| Mac | macOS 13 Ventura or newer. Intel and Apple chip |
 | Internet | Not needed |
 | Only to build it yourself | Apple's Command Line Tools (`xcode-select --install`). The full Xcode app is not needed |
 
@@ -86,7 +97,7 @@ Click the book in the menu bar. The panel has six tabs along the bottom.
 | **Quiz** tab | Today's five questions. Finishing it counts for your streak, whatever your score |
 | **Pictures** tab | The emoji word game. **Play again** for a new round. Just for fun; it doesn't change your streak |
 | **Saved** tab | Your starred words. Search them, open one, or remove it |
-| **Settings** tab | Chinese on or off, the voice and how fast it talks, a daily reminder at 8:00 (off until you turn it on), open at login, data licences, and **Quit** |
+| **Settings** tab | Chinese on or off, **My time zone** or **China time**, the voice and how fast it talks, a daily reminder at a time you pick (off until you turn it on; the time is this Mac's clock), open at login, data licences, and **Quit** |
 
 How the review boxes work:
 
@@ -101,7 +112,47 @@ How the review boxes work:
 
 Today's word, and any word you star, joins Box 1 and comes back the next day.
 
-**About the date:** Wordbit follows the date in China (Asia/Shanghai time), so everyone gets the same word on the same day. If your Mac is set to another time zone, the new word arrives at midnight China time, not your local midnight.
+On the first day, Review has nothing due yet and Saved is empty. Both say **Nothing yet** and link to the **Quiz** and **Pictures** tabs.
+
+**About the date:** Wordbit follows the time zone on your Mac, so the new word arrives at your local midnight and the streak follows your day. In **Settings** you can choose **China time** (Asia/Shanghai) if you want the day to change at midnight in China. People on different time zones can be on different dates, so the word for "today" can differ. The word for a given calendar date is the same either way: 18 October 2026 is still **derivative**. Saved dates and the streak are stored as plain dates, like `2026-10-18`, so they stay put when you switch.
+
+### Today
+
+<p align="center">
+  <img src="docs/hero.png" width="720" alt="Today: the word derivative, its meaning, Chinese, origin, and the streak for the week">
+</p>
+
+### Review
+
+<p align="center">
+  <img src="docs/review.png" width="720" alt="Review: a flashcard for derivative, ready to flip">
+</p>
+
+### Quiz
+
+<p align="center">
+  <img src="docs/quiz.png" width="720" alt="Quiz: a meaning question with four choices">
+</p>
+
+### Pictures
+
+<p align="center">
+  <img src="docs/pictures.png" width="720" alt="Pictures: an emoji and four words to choose from">
+</p>
+
+### Saved
+
+<p align="center">
+  <img src="docs/saved.png" width="720" alt="Saved: a searchable list of starred words">
+</p>
+
+### Settings
+
+<p align="center">
+  <img src="docs/settings.png" width="720" alt="Settings: Chinese meanings, Time zone (My time zone or China time), Voice, and Daily reminder with its time picker, Launch at login">
+</p>
+
+**Time zone** is **My time zone** or **China time**. **Daily reminder** is off until you turn it on. The time picker replaces the old fixed 8:00, and it uses the clock on this Mac. If a reminder never arrives, allow Wordbit in **System Settings → Notifications**.
 
 ## Privacy
 
@@ -111,7 +162,7 @@ Everything about you is in one file on your Mac:
 
 | File | What's in it |
 | --- | --- |
-| `~/Library/Application Support/Wordbit/state.json` | Which words you've seen and when, your Saved words, your review boxes and due dates, your streak (current, best, last day), your quiz scores by date, and your settings (Chinese on/off, voice, speed, reminder) |
+| `~/Library/Application Support/Wordbit/state.json` | Which words you've seen and when, your Saved words, your review boxes and due dates, your streak (current, best, last day), your quiz scores by date, and your settings (Chinese on/off, voice, speed, reminder, reminder time, time zone) |
 
 That's all. Nothing is sent anywhere. Quit Wordbit before you edit that file, or delete it to start over from scratch. It is not part of this repository or the `.dmg`.
 
@@ -143,33 +194,42 @@ cd wordbit
 ./install.sh
 ```
 
-That builds Wordbit with Apple's free Command Line Tools, runs a quick self-check, and puts it in `~/Applications`. Then open it from Finder. If macOS asks you to install the Command Line Tools, click **Install**, wait for it to finish, and run `./install.sh` again.
+That builds Wordbit for Intel and Apple chip, runs a quick self-check, puts it in `~/Applications`, and opens it. If macOS asks you to install the Command Line Tools, click **Install**, wait for it to finish, and run `./install.sh` again.
 
-`./install.sh` also removes the older "Word of the Day" app if it finds it, since Wordbit replaces it.
+The first time, macOS may stop the app. The script prints the same steps as [Download and install](#download-and-install):
+
+- **macOS 15 Sequoia or newer:** click **Done**. Open **System Settings → Privacy & Security**, scroll down to *"Wordbit was blocked…"*, click **Open Anyway**, and type your Mac password.
+- **macOS 13 Ventura or 14 Sonoma:** in `~/Applications`, right-click (or Control-click) **Wordbit**, choose **Open**, then click **Open** again.
+- **Or, in Terminal:** `xattr -dr com.apple.quarantine "$HOME/Applications/Wordbit.app"`
+
+If `~/Applications/Word of the Day.app` is there, the script says so and removes it. Wordbit replaces that older app.
 
 ## Development notes
 
 ```
 Sources/     the app (Swift, AppKit + SwiftUI). No Xcode project; install.sh is the build
 Resources/   words.json (400 study words), pictures.json (156 picture words), icons, Info.plist
-scripts/     Python scripts that build the word and picture lists and apply Chinese fixes
+scripts/     Python scripts that build the word and picture lists, plus make-dmg.sh
 data/        the version 1 word list and the build report
 docs/        README images
+packaging/   Homebrew cask (packaging/homebrew/Casks/wordbit.rb)
 ```
 
 | Command | What it does |
 | --- | --- |
-| `./install.sh` | Build, check and install to `~/Applications/Wordbit.app` |
+| `./install.sh` | Build for both chip types, check, install to `~/Applications/Wordbit.app`, and open it |
 | `./install.sh --build-only` | Build into `build/Wordbit.app` and run the check, without installing |
-| `build/Wordbit.app/Contents/MacOS/Wordbit --check` | The self-check: word count, a known date's word, quiz shape, and that every picture emoji exists |
+| `./scripts/make-dmg.sh` | Run the universal build, then write `build/Wordbit-2.1.0.dmg` and print its SHA-256 |
+| `build/Wordbit.app/Contents/MacOS/Wordbit --check` | The self-check: word count, a known date's word in China time and in the Mac's time zone, quiz shape, and that every picture emoji exists |
+| `lipo -info build/Wordbit.app/Contents/MacOS/Wordbit` | Confirms the app holds both arm64 and x86_64 |
 | `python3 scripts/build_resources.py /path/to/ecdict.csv` | Refresh the Chinese meanings from an ECDICT download |
 | `python3 scripts/build_pictures.py` | Rebuild the picture word list |
 | `python3 scripts/apply_cn_fixes.py` | Re-apply the hand corrections in `scripts/cn_fixes.json` (the build scripts do this for you) |
 
-- The word for a date is the number of days since 1 January 2026 (China time), counted around the 400-word list. So 1 January 2026 is **dormant** and 18 October 2026 is **derivative**.
+- The word for a calendar date is the number of days since 1 January 2026 in the time zone chosen in Settings (the Mac's own zone, unless you pick China time), counted around the 400-word list. The word for that date is unchanged from version 2.0: 1 January 2026 is **dormant** and 18 October 2026 is **derivative**.
 - `scripts/build_words.py` is the original version 1 generator. It needs a kaikki.org download and NLTK data, which are not in this repository.
 - A new install starts fresh: only today's word goes into review on the first day.
-- The app is built as an Intel binary for macOS 13 and signed "ad hoc" (no Apple developer account). The release `.dmg` holds that app plus a shortcut to Applications, made with `hdiutil`.
+- `install.sh` compiles with `-target arm64-apple-macos13` and `-target x86_64-apple-macos13`, joins the two with `lipo -create`, and signs "ad hoc" (no Apple developer account). `scripts/make-dmg.sh` puts that app in a disk image with a shortcut to Applications, made with `hdiutil`.
 - The app ID is `com.pohstep.wordbit`.
 
 ## Changelog

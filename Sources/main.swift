@@ -258,6 +258,7 @@ enum SelfCheck {
         let missingCN = library.words.filter { $0.cn.isEmpty }.count
         if missingCN > 0 { problems.append("words missing chinese \(missingCN)") }
 
+        Shanghai.apply("china")
         if let day = Shanghai.date(from: "2026-10-18") {
             let index = library.index(on: day)
             let word = library.entry(on: day).word
@@ -269,6 +270,19 @@ enum SelfCheck {
         if let epoch = Shanghai.date(from: "2026-01-01"), library.entry(on: epoch).word != "dormant" {
             problems.append("epoch word is \(library.entry(on: epoch).word)")
         }
+        Shanghai.apply("local")
+        if let day = Shanghai.date(from: "2026-10-18") {
+            let index = library.index(on: day)
+            let word = library.entry(on: day).word
+            print("local 2026-10-18 index \(index) \(word)")
+            if index != 290 || word != "derivative" {
+                problems.append("local zone day index drifted: \(index) \(word)")
+            }
+        }
+        if let epoch = Shanghai.date(from: "2026-01-01"), library.entry(on: epoch).word != "dormant" {
+            problems.append("local zone epoch word is \(library.entry(on: epoch).word)")
+        }
+        Shanghai.apply("china")
 
         let expectedBlanks = [
             ("convoluted", "convolute"),

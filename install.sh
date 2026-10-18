@@ -1,5 +1,6 @@
 #!/bin/bash
 # Build Wordbit with the Xcode Command Line Tools and install it to ~/Applications.
+# Compiles arm64 and x86_64, then joins them with lipo.
 # Usage: ./install.sh
 #        ./install.sh --build-only
 set -euo pipefail
@@ -7,6 +8,12 @@ cd "$(dirname "$0")"
 
 if ! command -v swiftc >/dev/null 2>&1; then
   echo "swiftc was not found. Install the Xcode Command Line Tools first:" >&2
+  echo "  xcode-select --install" >&2
+  exit 1
+fi
+
+if ! command -v lipo >/dev/null 2>&1; then
+  echo "lipo was not found. Install the Xcode Command Line Tools first:" >&2
   echo "  xcode-select --install" >&2
   exit 1
 fi
@@ -24,18 +31,31 @@ fi
 
 APP="build/Wordbit.app"
 BIN="$APP/Contents/MacOS/Wordbit"
+SLICE_ARM="build/Wordbit-arm64"
+SLICE_X64="build/Wordbit-x86_64"
 rm -rf build
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 
-echo "Compiling for ${ARCH}-apple-macos13.0"
-swiftc -O -target "${ARCH}-apple-macos13.0" \
-  -framework AppKit \
-  -framework SwiftUI \
-  -framework AVFoundation \
-  -framework ServiceManagement \
-  -framework UserNotifications \
-  -o "$BIN" \
-  Sources/*.swift
+compile_slice() {
+  local target="$1"
+  local output="$2"
+  echo "Compiling for ${target}"
+  swiftc -O -target "$target" \
+    -framework AppKit \
+    -framework SwiftUI \
+    -framework AVFoundation \
+    -framework ServiceManagement \
+    -framework UserNotifications \
+    -o "$output" \
+    Sources/*.swift
+}
+
+compile_slice "arm64-apple-macos13" "$SLICE_ARM"
+compile_slice "x86_64-apple-macos13" "$SLICE_X64"
+echo "Joining both chip types"
+lipo -create "$SLICE_ARM" "$SLICE_X64" -output "$BIN"
+rm -f "$SLICE_ARM" "$SLICE_X64"
+lipo -info "$BIN"
 
 cp Resources/Info.plist "$APP/Contents/Info.plist"
 cp Resources/words.json Resources/pictures.json "$APP/Contents/Resources/"
@@ -68,10 +88,19 @@ pkill -x WordOfTheDay >/dev/null 2>&1 || true
 sleep 0.4
 
 mkdir -p "$HOME/Applications"
-rm -rf "$HOME/Applications/Word of the Day.app"
+LEGACY="$HOME/Applications/Word of the Day.app"
+if [ -d "$LEGACY" ]; then
+  echo "Removing \"Word of the Day.app\" from ~/Applications. Wordbit replaces that older app."
+  rm -rf "$LEGACY"
+fi
 rm -rf "$HOME/Applications/Wordbit.app"
 cp -R "$APP" "$HOME/Applications/Wordbit.app"
 codesign --force --deep -s - "$HOME/Applications/Wordbit.app"
 
 echo "Installed to ~/Applications/Wordbit.app"
-echo "Open it from Finder. The first time, if macOS blocks it, right-click the app and choose Open."
+echo "Opening Wordbit."
+echo "The first time, macOS stops it and says \"Apple could not verify…\". Let it through once:"
+echo "  macOS 15 Sequoia or newer: click Done. Open System Settings → Privacy & Security, scroll down to \"Wordbit was blocked…\", click Open Anyway, and type your Mac password."
+echo "  macOS 13 Ventura or 14 Sonoma: in ~/Applications, right-click (or Control-click) Wordbit, choose Open, then click Open again."
+echo "  Or, in Terminal: xattr -dr com.apple.quarantine \"$HOME/Applications/Wordbit.app\""
+open "$HOME/Applications/Wordbit.app" || true

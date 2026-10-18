@@ -57,6 +57,43 @@ struct SettingsState: Codable, Equatable {
     /// AVSpeechUtterance rate. 0.5 is the system default.
     var speechRate: Double = 0.5
     var dailyReminder: Bool = false
+    /// "local" (the Mac's time zone) or "china" (Asia/Shanghai).
+    var timeZoneChoice: String = "local"
+    /// Daily reminder clock time. Ignored until dailyReminder is on.
+    var reminderHour: Int = 8
+    var reminderMinute: Int = 0
+
+    init() {}
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        showChinese = try container.decodeIfPresent(Bool.self, forKey: .showChinese) ?? true
+        voiceIdentifier = try container.decodeIfPresent(String.self, forKey: .voiceIdentifier)
+        speechRate = try container.decodeIfPresent(Double.self, forKey: .speechRate) ?? 0.5
+        dailyReminder = try container.decodeIfPresent(Bool.self, forKey: .dailyReminder) ?? false
+        let storedZone = try container.decodeIfPresent(String.self, forKey: .timeZoneChoice) ?? "local"
+        timeZoneChoice = storedZone == "china" ? "china" : "local"
+        let hour = try container.decodeIfPresent(Int.self, forKey: .reminderHour) ?? 8
+        let minute = try container.decodeIfPresent(Int.self, forKey: .reminderMinute) ?? 0
+        reminderHour = min(23, max(0, hour))
+        reminderMinute = min(59, max(0, minute))
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(showChinese, forKey: .showChinese)
+        try container.encodeIfPresent(voiceIdentifier, forKey: .voiceIdentifier)
+        try container.encode(speechRate, forKey: .speechRate)
+        try container.encode(dailyReminder, forKey: .dailyReminder)
+        try container.encode(timeZoneChoice, forKey: .timeZoneChoice)
+        try container.encode(reminderHour, forKey: .reminderHour)
+        try container.encode(reminderMinute, forKey: .reminderMinute)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case showChinese, voiceIdentifier, speechRate, dailyReminder
+        case timeZoneChoice, reminderHour, reminderMinute
+    }
 }
 
 struct FlagState: Codable, Equatable {
@@ -143,6 +180,7 @@ final class AppModel: ObservableObject {
 
     func bootstrap(login: LoginItem) {
         load()
+        Shanghai.apply(disk.settings.timeZoneChoice)
         // New users start fresh: only today's word is marked seen.
         noteToday()
         if !disk.flags.didRegisterLoginItem {
@@ -153,7 +191,11 @@ final class AppModel: ObservableObject {
         loadedDay = Shanghai.key(Date())
         save()
         prepareVoices()
-        Reminder.restoreIfAuthorized(enabled: disk.settings.dailyReminder)
+        Reminder.restoreIfAuthorized(
+            enabled: disk.settings.dailyReminder,
+            hour: disk.settings.reminderHour,
+            minute: disk.settings.reminderMinute
+        )
     }
 
     func show(_ tab: AppTab) {
@@ -310,6 +352,11 @@ final class AppModel: ObservableObject {
     }
 
     var dueCount: Int { dueEntries().count }
+
+    /// First open: nothing saved, no quiz finished, streak still at zero.
+    var showDayOneHint: Bool {
+        disk.saved.isEmpty && disk.quizHistory.isEmpty && disk.streak.current == 0
+    }
 
     var pendingOfferWords: [String] {
         guard disk.flags.seenReviewOffer == "pending" else { return [] }
@@ -508,7 +555,9 @@ final class AppModel: ObservableObject {
         disk.settings.dailyReminder = on
         save()
         if on {
-            Reminder.enable { [weak self] granted in
+            let hour = disk.settings.reminderHour
+            let minute = disk.settings.reminderMinute
+            Reminder.enable(hour: hour, minute: minute) { [weak self] granted in
                 DispatchQueue.main.async {
                     guard let self = self else { return }
                     if !granted {
@@ -520,6 +569,29 @@ final class AppModel: ObservableObject {
         } else {
             Reminder.disable()
         }
+    }
+
+    func setReminderTime(hour: Int, minute: Int) {
+        let nextHour = min(23, max(0, hour))
+        let nextMinute = min(59, max(0, minute))
+        if disk.settings.reminderHour == nextHour && disk.settings.reminderMinute == nextMinute {
+            return
+        }
+        disk.settings.reminderHour = nextHour
+        disk.settings.reminderMinute = nextMinute
+        save()
+        if disk.settings.dailyReminder {
+            Reminder.schedule(hour: nextHour, minute: nextMinute)
+        }
+    }
+
+    func setTimeZoneChoice(_ choice: String) {
+        let next = choice == "china" ? "china" : "local"
+        if disk.settings.timeZoneChoice == next { return }
+        disk.settings.timeZoneChoice = next
+        Shanghai.apply(next)
+        save()
+        refreshClock()
     }
 
     func savedEntries(matching query: String) -> [WordEntry] {
