@@ -6,10 +6,11 @@
 
 <p align="center">
   One new English word a day, with its Chinese meaning, in your Mac's menu bar.<br>
-  Review it, quiz yourself, play a picture game, and keep a daily streak. No account, no internet needed.
+  Review it, quiz yourself, play a picture game, and keep a daily streak. No account. The words need no internet.
 </p>
 
 <p align="center">
+  <a href="#说明"><b>说明</b></a> &nbsp;·&nbsp;
   <a href="#download-and-install"><b>Download</b></a> &nbsp;·&nbsp;
   <a href="#using-it"><b>Using it</b></a> &nbsp;·&nbsp;
   <a href="#build-it-yourself"><b>Build it yourself</b></a> &nbsp;·&nbsp;
@@ -28,8 +29,9 @@
 - **Pictures game.** You see an emoji and pick the right word out of four. There are 156 picture words, and the wrong answers are look-alikes (like *telescope / microscope / periscope / binoculars*), so you have to know the exact word.
 - **Saved words.** Tap the star on any word to keep it in your Saved list. Saved words also go into review.
 - **A daily streak.** A day counts when you **finish the quiz or finish the reviews that are due**. There are no "streak freezes": miss a day and the streak starts again at 1.
-- **Chinese on or off.** Show the Chinese meaning under each word, or hide it with one click. Chinese meanings checked by AI — corrections welcome.
-- **Works fully offline.** Every word is inside the app. It never connects to the internet.
+- **The meanings are in Chinese today.** The word itself stays English. You can show that Chinese meaning under each word, or hide it with one click. Chinese meanings checked by AI — corrections welcome. Hiding the meaning is separate from the interface language.
+- **English or 简体中文.** Menus, tabs, settings, hints and notifications follow the Mac: Simplified Chinese when this Mac's first language is Chinese, English otherwise. **Settings → Language** can be **Automatic (follow Mac)**, **English**, or **简体中文**. It switches straight away.
+- **Works offline.** Every word is inside the app. The only network use is **Check for updates** in Settings, and only when you click it.
 
 Wordbit is a small native Mac app written in Swift. There is no account, no ads and no tracking.
 
@@ -41,9 +43,18 @@ Wordbit is a small native Mac app written in Swift. There is no account, no ads 
   <a href="docs/demo-tabs.mp4">Watch the full video (MP4)</a>
 </p>
 
+## 说明
+
+Wordbit 是 Mac 菜单栏里的每日英语单词。单词仍是英语，释义目前是中文。
+
+界面默认跟随这台 Mac：首选语言是中文时用简体中文，否则用英语。在「设置 → 语言」里可以改成「自动（跟随 Mac）」、English 或「简体中文」，马上生效，不用重新打开。
+
+「关于」里显示 **Wordbit** 和版本号。只有点「检查更新」才会联网，对照 GitHub 上的最新版本：没有更新会说已是最新，有更新会打开发布页，并提示 `brew upgrade --cask wordbit`。不会自动下载，也不会在后台检查。离线时只提示稍后再试。「重置进度」会先询问，再删除这台 Mac 上的 `state.json`。登录时打开默认是关的。
+
 ## Download and install
 
-1. Download `Wordbit-2.1.0.dmg` from the [latest release](https://github.com/pohstep/wordbit/releases/latest).
+1. Download `Wordbit-2.2.0.dmg` from the [latest release](https://github.com/pohstep/wordbit/releases/latest).
+   - **Or, with Homebrew:** `brew install --cask pohstep/tap/wordbit`. That puts **Wordbit** in Applications, so skip step 2 and go to step 3.
 2. Open the `.dmg` file and drag **Wordbit** onto the **Applications** folder next to it.
 3. Open **Wordbit** from Applications. The first time, macOS stops it and says *"Apple could not verify…"*. That is because the app is free and not signed with a paid Apple developer account ([why](#why-does-macos-warn-me)). Let it through once:
    - **macOS 15 Sequoia or newer:** click **Done**. Open **System Settings → Privacy & Security**, scroll down to *"Wordbit was blocked…"*, click **Open Anyway**, and type your Mac password.
@@ -53,19 +64,24 @@ Wordbit is a small native Mac app written in Swift. There is no account, no ads 
 
 The download is one app for Intel and Apple-chip Macs.
 
-Wordbit adds itself to **System Settings → General → Login Items** the first time it runs, so it opens when you turn on your Mac. You can switch that off in Wordbit's **Settings** tab.
+Wordbit does not open itself when you log in. To have it start with your Mac, turn on **Open Wordbit when you log in** in **Settings**. It then appears under **System Settings → General → Login Items**, where you can turn it off too.
 
 What's new in each version: [CHANGELOG.md](CHANGELOG.md).
 
 ### Homebrew
 
-A Homebrew cask is in [`packaging/homebrew/Casks/wordbit.rb`](packaging/homebrew/Casks/wordbit.rb), ready to move into the `pohstep/homebrew-tap` repository. Its download address and SHA-256 are placeholders until the v2.1.0 `.dmg` is published. After that, and after `brew tap pohstep/tap`:
+```bash
+brew install --cask pohstep/tap/wordbit
+```
+
+Or tap first, then install:
 
 ```bash
+brew tap pohstep/tap
 brew install --cask wordbit
 ```
 
-The cask carries the same unsigned-app note: **Open Anyway** in **System Settings → Privacy & Security**, or `xattr -dr com.apple.quarantine`.
+To update later: `brew upgrade --cask wordbit`. The cask is unsigned, same as the disk image. The first open is the **Open Anyway** step above (right-click **Open** only on macOS 13–14).
 
 ### Why does macOS warn me?
 
@@ -80,7 +96,7 @@ Open Wordbit's **Settings** tab and click **Quit Wordbit**. Drag **Wordbit** fro
 | | |
 | --- | --- |
 | Mac | macOS 13 Ventura or newer. Intel and Apple chip |
-| Internet | Not needed |
+| Internet | Not needed for the words. **Check for updates** is optional, and only when you click it |
 | Only to build it yourself | Apple's Command Line Tools (`xcode-select --install`). The full Xcode app is not needed |
 
 ## Using it
@@ -97,7 +113,8 @@ Click the book in the menu bar. The panel has six tabs along the bottom.
 | **Quiz** tab | Today's five questions. Finishing it counts for your streak, whatever your score |
 | **Pictures** tab | The emoji word game. **Play again** for a new round. Just for fun; it doesn't change your streak |
 | **Saved** tab | Your starred words. Search them, open one, or remove it |
-| **Settings** tab | Chinese on or off, **My time zone** or **China time**, the voice and how fast it talks, a daily reminder at a time you pick (off until you turn it on; the time is this Mac's clock), open at login, data licences, and **Quit** |
+| **Settings** tab | Chinese meanings on or off, **My time zone** or **China time**, the voice and how fast it talks, a daily reminder at a time you pick (off until you turn it on; the time is this Mac's clock), open at login (off until you turn it on), data licences, and **Quit** |
+| **Settings → Language** and **About** | **Automatic (follow Mac)**, **English**, or **简体中文** (it changes straight away). About shows **Wordbit** and the version, **Check for updates**, and **Reset progress** |
 
 How the review boxes work:
 
@@ -149,20 +166,35 @@ On the first day, Review has nothing due yet and Saved is empty. Both say **Noth
 ### Settings
 
 <p align="center">
-  <img src="docs/settings.png" width="720" alt="Settings: Chinese meanings, Time zone (My time zone or China time), Voice, and Daily reminder with its time picker, Launch at login">
+  <img src="docs/settings-en.png" width="360" alt="Settings in English: Language set to English, Chinese meanings, Time zone (My time zone or China time), and Voice">
+  <img src="docs/settings-zh.png" width="360" alt="设置（简体中文）：语言为简体中文，中文释义、时区（本机时区或中国时间）和语音">
 </p>
 
-**Time zone** is **My time zone** or **China time**. **Daily reminder** is off until you turn it on. The time picker replaces the old fixed 8:00, and it uses the clock on this Mac. If a reminder never arrives, allow Wordbit in **System Settings → Notifications**.
+Settings in English and in 简体中文. Changing **Language** switches the whole panel straight away.
+
+<p align="center">
+  <img src="docs/about.png" width="360" alt="About: Wordbit 2.2.0, who made it, data credits, and the buttons Show data licences, Check for updates, Reset progress and Quit Wordbit">
+</p>
+
+**About**, at the bottom of Settings, shows the version and has **Check for updates**, **Reset progress** and **Quit Wordbit**.
+
+**Language** is **Automatic (follow Mac)**, **English**, or **简体中文**. Automatic uses Simplified Chinese when this Mac's first language is Chinese, and English otherwise. Changing it updates the panel immediately. The words stay English, and the meanings are in Chinese today.
+
+**Time zone** is **My time zone** or **China time**. **Daily reminder** is off until you turn it on. The time uses the clock on this Mac. If a reminder never arrives, allow Wordbit in **System Settings → Notifications**.
+
+**About** shows **Wordbit** and the version shipped in the app. **Check for updates** runs only when you click it. **Open at login** stays off until you turn it on. **Reset progress** asks before it deletes your saved state.
 
 ## Privacy
 
-Wordbit never connects to the internet. There's no account, no analytics and no tracking. Speech uses the voices already on your Mac, and the reminder (if you turn it on) is a notification made by your Mac itself.
+Wordbit does not phone home. There's no account, no analytics and no tracking. Speech uses the voices already on your Mac, and the reminder (if you turn it on) is a notification made by your Mac itself.
+
+**Check for updates** is the one exception, and it runs only when you click the button. It asks GitHub for the latest release of this app (`api.github.com`). It sends no words, streak or settings. If you are offline, or GitHub has nothing to compare, it says so and stops. It does not download an update, and it does not check in the background.
 
 Everything about you is in one file on your Mac:
 
 | File | What's in it |
 | --- | --- |
-| `~/Library/Application Support/Wordbit/state.json` | Which words you've seen and when, your Saved words, your review boxes and due dates, your streak (current, best, last day), your quiz scores by date, and your settings (Chinese on/off, voice, speed, reminder, reminder time, time zone) |
+| `~/Library/Application Support/Wordbit/state.json` | Which words you've seen and when, your Saved words, your review boxes and due dates, your streak (current, best, last day), your quiz scores by date, and your settings (Chinese on/off, voice, speed, reminder, reminder time, time zone, interface language) |
 
 That's all. Nothing is sent anywhere. Quit Wordbit before you edit that file, or delete it to start over from scratch. It is not part of this repository or the `.dmg`.
 
@@ -207,7 +239,8 @@ If `~/Applications/Word of the Day.app` is there, the script says so and removes
 ## Development notes
 
 ```
-Sources/     the app (Swift, AppKit + SwiftUI). No Xcode project; install.sh is the build
+Sources/     the app (Swift, AppKit + SwiftUI). No Xcode project; install.sh is the build.
+             L10nEn.swift and L10nZhHans.swift are the interface languages, one file each
 Resources/   words.json (400 study words), pictures.json (156 picture words), icons, Info.plist
 scripts/     Python scripts that build the word and picture lists, plus make-dmg.sh
 data/        the version 1 word list and the build report
@@ -219,7 +252,7 @@ packaging/   Homebrew cask (packaging/homebrew/Casks/wordbit.rb)
 | --- | --- |
 | `./install.sh` | Build for both chip types, check, install to `~/Applications/Wordbit.app`, and open it |
 | `./install.sh --build-only` | Build into `build/Wordbit.app` and run the check, without installing |
-| `./scripts/make-dmg.sh` | Run the universal build, then write `build/Wordbit-2.1.0.dmg` and print its SHA-256 |
+| `./scripts/make-dmg.sh` | Run the universal build, then write `build/Wordbit-2.2.0.dmg` and print its SHA-256 |
 | `build/Wordbit.app/Contents/MacOS/Wordbit --check` | The self-check: word count, a known date's word in China time and in the Mac's time zone, quiz shape, and that every picture emoji exists |
 | `lipo -info build/Wordbit.app/Contents/MacOS/Wordbit` | Confirms the app holds both arm64 and x86_64 |
 | `python3 scripts/build_resources.py /path/to/ecdict.csv` | Refresh the Chinese meanings from an ECDICT download |
@@ -231,6 +264,9 @@ packaging/   Homebrew cask (packaging/homebrew/Casks/wordbit.rb)
 - A new install starts fresh: only today's word goes into review on the first day.
 - `install.sh` compiles with `-target arm64-apple-macos13` and `-target x86_64-apple-macos13`, joins the two with `lipo -create`, and signs "ad hoc" (no Apple developer account). `scripts/make-dmg.sh` puts that app in a disk image with a shortcut to Applications, made with `hdiutil`.
 - The app ID is `com.pohstep.wordbit`.
+- Interface strings live in `Sources/L10nEn.swift` (English, the source language) and `Sources/L10nZhHans.swift` (Simplified Chinese). A new interface language is another file that covers every `L10nKey`, plus a line in `InterfaceLanguage`. The English words and their Chinese meanings are not in those files. The meanings are in Chinese today.
+- The recipe at `packaging/homebrew/Casks/wordbit.rb` is version 2.2.0. Its SHA-256 matches `Wordbit-2.2.0.dmg` on the GitHub release.
+- Launch flags are `--check`, `--show` and `--make-iconset`. There is no screenshot render mode.
 
 ## Changelog
 

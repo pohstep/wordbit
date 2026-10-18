@@ -43,8 +43,8 @@ struct SpeakerButton: View {
                 .background(Circle().fill(kind.softFill))
         }
         .buttonStyle(PlainButtonStyle())
-        .help("Speak")
-        .accessibilityLabel("Speak")
+        .help(model.tr(.helpSpeak))
+        .accessibilityLabel(model.tr(.helpSpeak))
     }
 }
 
@@ -85,7 +85,7 @@ struct ChinesePill: View {
                 )
         }
         .buttonStyle(PlainButtonStyle())
-        .help("Show Chinese meanings")
+        .help(model.tr(.helpChinese))
     }
 }
 
@@ -196,16 +196,16 @@ struct HeaderBar: View {
                 todayTitle
                 Spacer(minLength: 4)
                 HeaderIcon(name: "chevron.left") { model.shiftDay(-1) }
-                    .help("Previous day")
+                    .help(model.tr(.helpPreviousDay))
                 HeaderIcon(name: "chevron.right", enabled: model.dayOffset < 0) { model.shiftDay(1) }
-                    .help("Next day")
+                    .help(model.tr(.helpNextDay))
             } else {
-                Text(model.tab.title)
+                Text(model.tabTitle(model.tab))
                     .font(Theme.Typeface.title)
                     .foregroundColor(Theme.Palette.ink)
                 Spacer()
                 if model.tab == .review {
-                    Text(model.dueCount == 0 ? "All clear" : (model.dueCount == 1 ? "1 due" : "\(model.dueCount) due"))
+                    Text(model.dueText(model.dueCount))
                         .font(Theme.Typeface.caption)
                         .foregroundColor(Theme.CardKind.review.accentText)
                 }
@@ -217,7 +217,7 @@ struct HeaderBar: View {
     @ViewBuilder
     private var todayTitle: some View {
         if model.dayOffset == 0 {
-            Text("Today")
+            Text(model.tr(.tabToday))
                 .font(Theme.Typeface.title)
                 .foregroundColor(Theme.Palette.ink)
             Text(model.dateLabel)
@@ -234,7 +234,7 @@ struct HeaderBar: View {
                     .lineLimit(1)
             }
             .buttonStyle(PlainButtonStyle())
-            .help("Back to today")
+            .help(model.tr(.helpBackToday))
         }
     }
 }
@@ -275,7 +275,7 @@ struct TabBar: View {
                             .offset(x: 8, y: -5)
                     }
                 }
-                Text(item.title)
+                Text(model.tabTitle(item))
                     .font(Theme.Typeface.tab)
                     .lineLimit(1)
             }

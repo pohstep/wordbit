@@ -9,11 +9,11 @@ struct TodayView: View {
             VStack(spacing: Theme.Metrics.cardGap) {
                 if model.library.failed {
                     LoadErrorCard(
-                        title: "Words didn't load",
-                        detail: "words.json is missing from the app. Run ./install.sh again."
+                        title: model.tr(.wordsDidntLoad),
+                        detail: model.tr(.wordsMissing)
                     )
                 } else {
-                    WordCard(entry: model.displayedEntry, heading: model.dayOffset == 0 ? "Word of the day" : "On this day")
+                    WordCard(entry: model.displayedEntry, heading: model.dayOffset == 0 ? model.tr(.wordOfTheDay) : model.tr(.onThisDay))
                     StreakCard()
                     if !model.pendingOfferWords.isEmpty {
                         OfferCard()
@@ -28,7 +28,7 @@ struct TodayView: View {
 
 struct WordCard: View {
     let entry: WordEntry
-    var heading: String = "Word of the day"
+    var heading: String
     @EnvironmentObject var model: AppModel
     @State private var copied = false
 
@@ -43,7 +43,7 @@ struct WordCard: View {
                     Image(systemName: model.isSaved(entry.word) ? "star.fill" : "star")
                 }
                 .buttonStyle(Theme.IconButtonStyle(kind: model.isSaved(entry.word) ? .saved : .word))
-                .help(model.isSaved(entry.word) ? "Remove from Saved" : "Save word")
+                .help(model.isSaved(entry.word) ? model.tr(.helpRemoveSaved) : model.tr(.helpSaveWord))
 
                 Button {
                     model.copyEntry(entry)
@@ -53,7 +53,7 @@ struct WordCard: View {
                     Image(systemName: copied ? "checkmark" : "doc.on.doc")
                 }
                 .buttonStyle(Theme.IconButtonStyle(kind: .word))
-                .help("Copy word and definition")
+                .help(model.tr(.helpCopyWord))
             }
 
             HStack(alignment: .center, spacing: Theme.Space.s) {
@@ -111,7 +111,7 @@ struct WordCard: View {
             }
 
             if !entry.origin.isEmpty {
-                (Text("Origin").foregroundColor(Theme.CardKind.word.accentText)
+                (Text(model.tr(.origin)).foregroundColor(Theme.CardKind.word.accentText)
                     + Text(" · " + entry.origin).foregroundColor(Theme.Palette.inkSecondary))
                     .font(Theme.Typeface.caption)
                     .fixedSize(horizontal: false, vertical: true)
@@ -121,9 +121,9 @@ struct WordCard: View {
             HStack(spacing: Theme.Space.s) {
                 ChinesePill()
                 if let box = model.reviewBox(entry.word) {
-                    OutlinePill(text: "In review · box \(box)")
+                    OutlinePill(text: model.trf(.inReviewBox, box))
                 } else {
-                    OutlinePill(text: "Not in review")
+                    OutlinePill(text: model.tr(.notInReview))
                 }
                 Spacer(minLength: 0)
             }
@@ -140,9 +140,9 @@ struct StreakCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Space.s) {
             HStack {
-                Theme.Eyebrow(text: "Streak", kind: .streak)
+                Theme.Eyebrow(text: model.tr(.streak), kind: .streak)
                 Spacer()
-                Text("Best \(model.disk.streak.best)")
+                Text(model.trf(.best, model.disk.streak.best))
                     .font(Theme.Typeface.caption)
                     .foregroundColor(Theme.CardKind.streak.accentText)
             }
@@ -151,7 +151,7 @@ struct StreakCard: View {
                     Text("\(model.disk.streak.current)")
                         .font(Theme.Typeface.stat)
                         .foregroundColor(Theme.Palette.ink)
-                    Text(model.disk.streak.current == 1 ? "day" : "days")
+                    Text(model.disk.streak.current == 1 ? model.tr(.dayOne) : model.tr(.dayMany))
                         .font(Theme.Typeface.body)
                         .foregroundColor(Theme.Palette.inkSecondary)
                 }
@@ -195,14 +195,14 @@ struct StreakCard: View {
     @ViewBuilder
     private var hint: some View {
         if model.countedToday {
-            Text("Today counts. See you tomorrow.")
+            Text(model.tr(.todayCountsTomorrow))
                 .font(Theme.Typeface.caption)
                 .foregroundColor(Theme.Palette.inkSecondary)
         } else {
             HStack(spacing: 0) {
-                Text("Finish today's quiz to keep it going · ")
+                Text(model.tr(.finishQuizHint))
                     .foregroundColor(Theme.Palette.inkSecondary)
-                Button("Take quiz →") { model.show(.quiz) }
+                Button(model.tr(.takeQuizArrow)) { model.show(.quiz) }
                     .buttonStyle(PlainButtonStyle())
                     .foregroundColor(Theme.CardKind.streak.accentText)
             }
@@ -217,20 +217,18 @@ struct OfferCard: View {
     var body: some View {
         let count = model.pendingOfferWords.count
         VStack(alignment: .leading, spacing: Theme.Space.s) {
-            Theme.Eyebrow(text: "Review", kind: .review)
-            Text("Add the \(count) \(count == 1 ? "word" : "words") you've seen since 28 Sep to review?")
+            Theme.Eyebrow(text: model.tr(.tabReview), kind: .review)
+            Text(count == 1 ? model.tr(.offerQuestionOne) : model.trf(.offerQuestionMany, count))
                 .font(Theme.Typeface.body)
                 .foregroundColor(Theme.Palette.ink)
                 .fixedSize(horizontal: false, vertical: true)
-            Text(count > 40
-                 ? "They'll be spread over the next days, about 10 a day."
-                 : "They start tomorrow, so today stays short.")
+            Text(count > 40 ? model.tr(.offerSpread) : model.tr(.offerTomorrow))
                 .font(Theme.Typeface.caption)
                 .foregroundColor(Theme.Palette.inkSecondary)
             HStack(spacing: Theme.Space.s) {
-                Button("Add them") { model.acceptOffer() }
+                Button(model.tr(.addThem)) { model.acceptOffer() }
                     .buttonStyle(Theme.SolidButtonStyle(kind: .review))
-                Button("Not now") { model.dismissOffer() }
+                Button(model.tr(.notNow)) { model.dismissOffer() }
                     .buttonStyle(Theme.SoftButtonStyle(kind: .review, height: 32))
             }
         }

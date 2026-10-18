@@ -77,12 +77,28 @@ enum Shanghai {
         return (weekday + 5) % 7
     }
 
-    static func englishDate(_ date: Date) -> String {
+    /// Locale order comes from `locale` (the Mac's locale, or the language
+    /// the user picked). The template is not a fixed British day-month string.
+    static func displayDate(_ date: Date, locale: Locale) -> String {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_GB")
-        formatter.timeZone = calendar.timeZone
-        formatter.dateFormat = "EEEE, d MMMM"
+        formatter.locale = locale
+        formatter.timeZone = timeZone
+        formatter.setLocalizedDateFormatFromTemplate("EEEEMMMMd")
         return formatter.string(from: date)
+    }
+
+    /// One short weekday mark, Sunday-first, in `locale`.
+    static func narrowWeekday(_ date: Date, locale: Locale) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = locale
+        formatter.timeZone = timeZone
+        let symbols = formatter.veryShortWeekdaySymbols ?? []
+        let weekday = calendar.component(.weekday, from: date)
+        let index = weekday - 1
+        if index >= 0 && index < symbols.count {
+            return symbols[index]
+        }
+        return ""
     }
 }
 
