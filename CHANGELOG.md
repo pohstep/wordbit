@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.2.1 — 2026-10-19
+
+- **Always your Mac's local time.** The new word and the streak follow the clock on this Mac. The time zone setting is gone, and an older saved time zone choice is ignored. Your progress, Saved words and streak are kept.
+
 ## v2.2.0 — 2026-10-19
 
 - **Interface language.** English is the source language. Every menu, tab, setting, hint, notification and the About text also has Simplified Chinese. The app follows the Mac: Simplified Chinese when the first language is Chinese, English otherwise. **Settings → Language** is **Automatic (follow Mac)**, **English**, or **简体中文**, and it switches straight away. Dates use the system locale's formatter (no fixed British day-month pattern). Automatic follows the Mac's locale; English or 简体中文 follows that language's locale. The words stay English, and the meanings are in Chinese today.
@@ -8,7 +12,7 @@
 
 ## v2.1.0 — 2026-10-18
 
-- **Your time zone.** The new word and the streak follow the Mac's own time zone. Settings can switch to China time (Asia/Shanghai). Saved dates and streaks stay as plain dates, so they carry over.
+- **Your time zone.** The new word and the streak follow the Mac's own time zone. Saved dates and streaks stay as plain dates, so they carry over.
 - **Reminder time.** Pick the time. The reminder stays off until you turn it on. The note now says to allow notifications in System Settings if macOS blocks them.
 - **Day-one hints.** An empty Review tab (before you have done anything) and an empty Saved tab point you to the Quiz and Pictures tabs.
 - **Universal build.** One app for Intel and Apple-chip Macs.

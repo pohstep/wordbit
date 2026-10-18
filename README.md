@@ -53,7 +53,7 @@ Wordbit 是 Mac 菜单栏里的每日英语单词。单词仍是英语，释义�
 
 ## Download and install
 
-1. Download `Wordbit-2.2.0.dmg` from the [latest release](https://github.com/pohstep/wordbit/releases/latest).
+1. Download `Wordbit-2.2.1.dmg` from the [latest release](https://github.com/pohstep/wordbit/releases/latest).
    - **Or, with Homebrew:** `brew install --cask pohstep/tap/wordbit`. That puts **Wordbit** in Applications, so skip step 2 and go to step 3.
 2. Open the `.dmg` file and drag **Wordbit** onto the **Applications** folder next to it.
 3. Open **Wordbit** from Applications. The first time, macOS stops it and says *"Apple could not verify…"*. That is because the app is free and not signed with a paid Apple developer account ([why](#why-does-macos-warn-me)). Let it through once:
@@ -113,7 +113,7 @@ Click the book in the menu bar. The panel has six tabs along the bottom.
 | **Quiz** tab | Today's five questions. Finishing it counts for your streak, whatever your score |
 | **Pictures** tab | The emoji word game. **Play again** for a new round. Just for fun; it doesn't change your streak |
 | **Saved** tab | Your starred words. Search them, open one, or remove it |
-| **Settings** tab | Chinese meanings on or off, **My time zone** or **China time**, the voice and how fast it talks, a daily reminder at a time you pick (off until you turn it on; the time is this Mac's clock), open at login (off until you turn it on), data licences, and **Quit** |
+| **Settings** tab | **Language**, Chinese meanings on or off, the voice and how fast it talks, a daily reminder at a time you pick (off until you turn it on; the time is this Mac's clock), open at login (off until you turn it on), data licences, and **Quit** |
 | **Settings → Language** and **About** | **Automatic (follow Mac)**, **English**, or **简体中文** (it changes straight away). About shows **Wordbit** and the version, **Check for updates**, and **Reset progress** |
 
 How the review boxes work:
@@ -131,7 +131,7 @@ Today's word, and any word you star, joins Box 1 and comes back the next day.
 
 On the first day, Review has nothing due yet and Saved is empty. Both say **Nothing yet** and link to the **Quiz** and **Pictures** tabs.
 
-**About the date:** Wordbit follows the time zone on your Mac, so the new word arrives at your local midnight and the streak follows your day. In **Settings** you can choose **China time** (Asia/Shanghai) if you want the day to change at midnight in China. People on different time zones can be on different dates, so the word for "today" can differ. The word for a given calendar date is the same either way: 18 October 2026 is still **derivative**. Saved dates and the streak are stored as plain dates, like `2026-10-18`, so they stay put when you switch.
+**About the date:** Wordbit always uses your Mac's local time, so the new word arrives at your local midnight and the streak follows your day. People in different time zones can be on different dates, so the word for "today" can differ. The word for a given calendar date is always the same: 18 October 2026 is **derivative**. Saved dates and the streak are stored as plain dates, like `2026-10-18`.
 
 ### Today
 
@@ -166,21 +166,21 @@ On the first day, Review has nothing due yet and Saved is empty. Both say **Noth
 ### Settings
 
 <p align="center">
-  <img src="docs/settings-en.png" width="360" alt="Settings in English: Language set to English, Chinese meanings, Time zone (My time zone or China time), and Voice">
-  <img src="docs/settings-zh.png" width="360" alt="设置（简体中文）：语言为简体中文，中文释义、时区（本机时区或中国时间）和语音">
+  <img src="docs/settings-en.png" width="360" alt="Settings in English: Language set to English, Chinese meanings, Voice, and Daily reminder">
+  <img src="docs/settings-zh.png" width="360" alt="设置（简体中文）：语言为简体中文，中文释义、语音和每日提醒">
 </p>
 
 Settings in English and in 简体中文. Changing **Language** switches the whole panel straight away.
 
 <p align="center">
-  <img src="docs/about.png" width="360" alt="About: Wordbit 2.2.0, who made it, data credits, and the buttons Show data licences, Check for updates, Reset progress and Quit Wordbit">
+  <img src="docs/about.png" width="360" alt="About: Wordbit 2.2.1, who made it, data credits, and the buttons Show data licences, Check for updates, Reset progress and Quit Wordbit">
 </p>
 
 **About**, at the bottom of Settings, shows the version and has **Check for updates**, **Reset progress** and **Quit Wordbit**.
 
 **Language** is **Automatic (follow Mac)**, **English**, or **简体中文**. Automatic uses Simplified Chinese when this Mac's first language is Chinese, and English otherwise. Changing it updates the panel immediately. The words stay English, and the meanings are in Chinese today.
 
-**Time zone** is **My time zone** or **China time**. **Daily reminder** is off until you turn it on. The time uses the clock on this Mac. If a reminder never arrives, allow Wordbit in **System Settings → Notifications**.
+**Daily reminder** is off until you turn it on. The time uses the clock on this Mac. If a reminder never arrives, allow Wordbit in **System Settings → Notifications**.
 
 **About** shows **Wordbit** and the version shipped in the app. **Check for updates** runs only when you click it. **Open at login** stays off until you turn it on. **Reset progress** asks before it deletes your saved state.
 
@@ -194,7 +194,7 @@ Everything about you is in one file on your Mac:
 
 | File | What's in it |
 | --- | --- |
-| `~/Library/Application Support/Wordbit/state.json` | Which words you've seen and when, your Saved words, your review boxes and due dates, your streak (current, best, last day), your quiz scores by date, and your settings (Chinese on/off, voice, speed, reminder, reminder time, time zone, interface language) |
+| `~/Library/Application Support/Wordbit/state.json` | Which words you've seen and when, your Saved words, your review boxes and due dates, your streak (current, best, last day), your quiz scores by date, and your settings (Chinese on/off, voice, speed, reminder, reminder time, interface language) |
 
 That's all. Nothing is sent anywhere. Quit Wordbit before you edit that file, or delete it to start over from scratch. It is not part of this repository or the `.dmg`.
 
@@ -252,20 +252,20 @@ packaging/   Homebrew cask (packaging/homebrew/Casks/wordbit.rb)
 | --- | --- |
 | `./install.sh` | Build for both chip types, check, install to `~/Applications/Wordbit.app`, and open it |
 | `./install.sh --build-only` | Build into `build/Wordbit.app` and run the check, without installing |
-| `./scripts/make-dmg.sh` | Run the universal build, then write `build/Wordbit-2.2.0.dmg` and print its SHA-256 |
-| `build/Wordbit.app/Contents/MacOS/Wordbit --check` | The self-check: word count, a known date's word in China time and in the Mac's time zone, quiz shape, and that every picture emoji exists |
+| `./scripts/make-dmg.sh` | Run the universal build, then write `build/Wordbit-2.2.1.dmg` and print its SHA-256 |
+| `build/Wordbit.app/Contents/MacOS/Wordbit --check` | The self-check: word count, a known date's word in the Mac's time zone, quiz shape, and that every picture emoji exists |
 | `lipo -info build/Wordbit.app/Contents/MacOS/Wordbit` | Confirms the app holds both arm64 and x86_64 |
 | `python3 scripts/build_resources.py /path/to/ecdict.csv` | Refresh the Chinese meanings from an ECDICT download |
 | `python3 scripts/build_pictures.py` | Rebuild the picture word list |
 | `python3 scripts/apply_cn_fixes.py` | Re-apply the hand corrections in `scripts/cn_fixes.json` (the build scripts do this for you) |
 
-- The word for a calendar date is the number of days since 1 January 2026 in the time zone chosen in Settings (the Mac's own zone, unless you pick China time), counted around the 400-word list. The word for that date is unchanged from version 2.0: 1 January 2026 is **dormant** and 18 October 2026 is **derivative**.
+- The word for a calendar date is the number of days since 1 January 2026 in the Mac's own time zone, counted around the 400-word list. The word for that date is unchanged from version 2.0: 1 January 2026 is **dormant** and 18 October 2026 is **derivative**.
 - `scripts/build_words.py` is the original version 1 generator. It needs a kaikki.org download and NLTK data, which are not in this repository.
 - A new install starts fresh: only today's word goes into review on the first day.
 - `install.sh` compiles with `-target arm64-apple-macos13` and `-target x86_64-apple-macos13`, joins the two with `lipo -create`, and signs "ad hoc" (no Apple developer account). `scripts/make-dmg.sh` puts that app in a disk image with a shortcut to Applications, made with `hdiutil`.
 - The app ID is `com.pohstep.wordbit`.
 - Interface strings live in `Sources/L10nEn.swift` (English, the source language) and `Sources/L10nZhHans.swift` (Simplified Chinese). A new interface language is another file that covers every `L10nKey`, plus a line in `InterfaceLanguage`. The English words and their Chinese meanings are not in those files. The meanings are in Chinese today.
-- The recipe at `packaging/homebrew/Casks/wordbit.rb` is version 2.2.0. Its SHA-256 matches `Wordbit-2.2.0.dmg` on the GitHub release.
+- The recipe at `packaging/homebrew/Casks/wordbit.rb` is version 2.2.1. Its SHA-256 matches `Wordbit-2.2.1.dmg` on the GitHub release.
 - Launch flags are `--check`, `--show` and `--make-iconset`. There is no screenshot render mode.
 
 ## Changelog

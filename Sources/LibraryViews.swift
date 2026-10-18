@@ -132,7 +132,6 @@ struct SettingsView: View {
             VStack(spacing: Theme.Metrics.cardGap) {
                 interfaceCard
                 languageCard
-                timeZoneCard
                 speechCard
                 reminderCard
                 loginCard
@@ -286,37 +285,6 @@ struct SettingsView: View {
         if abs(rate - 0.5) < 0.02 { return model.tr(.rateNormal) }
         if rate < 0.5 { return model.tr(.rateSlow) }
         return model.tr(.rateFast)
-    }
-
-    private var timeZoneCard: some View {
-        VStack(alignment: .leading, spacing: Theme.Space.s) {
-            Text(model.tr(.timeZone))
-                .font(Theme.Typeface.title)
-                .foregroundColor(Theme.Palette.ink)
-            Picker(selection: Binding(
-                get: { model.disk.settings.timeZoneChoice == "china" ? "china" : "local" },
-                set: { model.setTimeZoneChoice($0) }
-            )) {
-                Text(model.tr(.timeZoneLocal)).tag("local")
-                Text(model.tr(.timeZoneChina)).tag("china")
-            } label: {
-                Text(model.tr(.timeZone))
-            }
-            .pickerStyle(SegmentedPickerStyle())
-            .labelsHidden()
-            Text(timeZoneCaption)
-                .font(Theme.Typeface.caption)
-                .foregroundColor(Theme.Palette.inkSecondary)
-                .fixedSize(horizontal: false, vertical: true)
-        }
-        .neutralCard()
-    }
-
-    private var timeZoneCaption: String {
-        if model.disk.settings.timeZoneChoice == "china" {
-            return model.tr(.timeZoneChinaDetail)
-        }
-        return model.tr(.timeZoneLocalDetail)
     }
 
     private var reminderCard: some View {
