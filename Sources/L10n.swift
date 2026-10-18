@@ -51,11 +51,6 @@ enum L10nKey: String, CaseIterable {
     case rateFast
     case speakToday
     case helpSpeak
-    case timeZone
-    case timeZoneLocal
-    case timeZoneChina
-    case timeZoneLocalDetail
-    case timeZoneChinaDetail
     case dailyReminder
     case remindMe
     case reminderTime

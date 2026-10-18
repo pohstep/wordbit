@@ -46,8 +46,6 @@ struct SettingsState: Codable, Equatable {
     /// AVSpeechUtterance rate. 0.5 is the system default.
     var speechRate: Double = 0.5
     var dailyReminder: Bool = false
-    /// "local" (the Mac's time zone) or "china" (Asia/Shanghai).
-    var timeZoneChoice: String = "local"
     /// Daily reminder clock time. Ignored until dailyReminder is on.
     var reminderHour: Int = 8
     var reminderMinute: Int = 0
@@ -62,8 +60,6 @@ struct SettingsState: Codable, Equatable {
         voiceIdentifier = try container.decodeIfPresent(String.self, forKey: .voiceIdentifier)
         speechRate = try container.decodeIfPresent(Double.self, forKey: .speechRate) ?? 0.5
         dailyReminder = try container.decodeIfPresent(Bool.self, forKey: .dailyReminder) ?? false
-        let storedZone = try container.decodeIfPresent(String.self, forKey: .timeZoneChoice) ?? "local"
-        timeZoneChoice = storedZone == "china" ? "china" : "local"
         let hour = try container.decodeIfPresent(Int.self, forKey: .reminderHour) ?? 8
         let minute = try container.decodeIfPresent(Int.self, forKey: .reminderMinute) ?? 0
         reminderHour = min(23, max(0, hour))
@@ -78,7 +74,6 @@ struct SettingsState: Codable, Equatable {
         try container.encodeIfPresent(voiceIdentifier, forKey: .voiceIdentifier)
         try container.encode(speechRate, forKey: .speechRate)
         try container.encode(dailyReminder, forKey: .dailyReminder)
-        try container.encode(timeZoneChoice, forKey: .timeZoneChoice)
         try container.encode(reminderHour, forKey: .reminderHour)
         try container.encode(reminderMinute, forKey: .reminderMinute)
         try container.encode(interfaceLanguage, forKey: .interfaceLanguage)
@@ -86,7 +81,7 @@ struct SettingsState: Codable, Equatable {
 
     private enum CodingKeys: String, CodingKey {
         case showChinese, voiceIdentifier, speechRate, dailyReminder
-        case timeZoneChoice, reminderHour, reminderMinute, interfaceLanguage
+        case reminderHour, reminderMinute, interfaceLanguage
     }
 }
 
@@ -184,11 +179,10 @@ final class AppModel: ObservableObject {
 
     func bootstrap() {
         load()
-        Shanghai.apply(disk.settings.timeZoneChoice)
         // New users start fresh: only today's word is marked seen.
         // Open at login stays off until the user turns it on in Settings.
         noteToday()
-        loadedDay = Shanghai.key(Date())
+        loadedDay = LocalDay.key(Date())
         save()
         prepareVoices()
         let reminderOn = disk.settings.dailyReminder
@@ -204,7 +198,7 @@ final class AppModel: ObservableObject {
     }
 
     func refreshClock() {
-        let key = Shanghai.key(Date())
+        let key = LocalDay.key(Date())
         guard key != loadedDay else { return }
         loadedDay = key
         dayOffset = 0
@@ -218,11 +212,11 @@ final class AppModel: ObservableObject {
 
     // MARK: Today
 
-    var displayedDate: Date { Shanghai.addDays(dayOffset, to: Date()) }
+    var displayedDate: Date { LocalDay.addDays(dayOffset, to: Date()) }
 
     var displayedEntry: WordEntry { library.entry(on: displayedDate) }
 
-    var dateLabel: String { Shanghai.displayDate(displayedDate, locale: interfaceLocale) }
+    var dateLabel: String { LocalDay.displayDate(displayedDate, locale: interfaceLocale) }
 
     func shiftDay(_ delta: Int) {
         let next = dayOffset + delta
@@ -260,7 +254,7 @@ final class AppModel: ObservableObject {
     func markSeen(_ word: String) {
         guard library.entry(for: word) != nil else { return }
         if disk.seen[word] == nil {
-            disk.seen[word] = Shanghai.key(Date())
+            disk.seen[word] = LocalDay.key(Date())
             save()
         }
     }
@@ -289,14 +283,14 @@ final class AppModel: ObservableObject {
     var countedToday: Bool { dayWasCounted(Date()) }
 
     func weekDots() -> [WeekDot] {
-        let today = Shanghai.startOfDay(Date())
-        let monday = Shanghai.addDays(-Shanghai.mondayIndex(today), to: today)
-        let todayKey = Shanghai.key(today)
-        let lastDate = disk.streak.lastDay.flatMap { Shanghai.date(from: $0) }.map { Shanghai.startOfDay($0) }
+        let today = LocalDay.startOfDay(Date())
+        let monday = LocalDay.addDays(-LocalDay.mondayIndex(today), to: today)
+        let todayKey = LocalDay.key(today)
+        let lastDate = disk.streak.lastDay.flatMap { LocalDay.date(from: $0) }.map { LocalDay.startOfDay($0) }
         let locale = interfaceLocale
         return (0..<7).map { offset in
-            let date = Shanghai.addDays(offset, to: monday)
-            let key = Shanghai.key(date)
+            let date = LocalDay.addDays(offset, to: monday)
+            let key = LocalDay.key(date)
             let style: WeekDotStyle
             if key == todayKey {
                 style = dayWasCounted(date) ? .filled : .ring
@@ -309,23 +303,23 @@ final class AppModel: ObservableObject {
             } else {
                 style = .upcoming
             }
-            return WeekDot(key: key, letter: Shanghai.narrowWeekday(date, locale: locale), style: style)
+            return WeekDot(key: key, letter: LocalDay.narrowWeekday(date, locale: locale), style: style)
         }
     }
 
     private func dayWasCounted(_ date: Date) -> Bool {
         guard disk.streak.current > 0,
               let lastKey = disk.streak.lastDay,
-              let lastDate = Shanghai.date(from: lastKey) else { return false }
-        let start = Shanghai.addDays(-(disk.streak.current - 1), to: lastDate)
-        let day = Shanghai.startOfDay(date)
-        return day >= Shanghai.startOfDay(start) && day <= Shanghai.startOfDay(lastDate)
+              let lastDate = LocalDay.date(from: lastKey) else { return false }
+        let start = LocalDay.addDays(-(disk.streak.current - 1), to: lastDate)
+        let day = LocalDay.startOfDay(date)
+        return day >= LocalDay.startOfDay(start) && day <= LocalDay.startOfDay(lastDate)
     }
 
     private func markTodayCounted() {
-        let today = Shanghai.key(Date())
+        let today = LocalDay.key(Date())
         if disk.streak.lastDay == today { return }
-        let yesterday = Shanghai.key(Shanghai.addDays(-1, to: Date()))
+        let yesterday = LocalDay.key(LocalDay.addDays(-1, to: Date()))
         if disk.streak.lastDay == yesterday {
             disk.streak.current += 1
         } else {
@@ -340,7 +334,7 @@ final class AppModel: ObservableObject {
     // MARK: Review
 
     func dueEntries() -> [(word: String, card: ReviewCard)] {
-        let today = Shanghai.key(Date())
+        let today = LocalDay.key(Date())
         return disk.review
             .filter { $0.value.due <= today }
             .map { (word: $0.key, card: $0.value) }
@@ -366,7 +360,7 @@ final class AppModel: ObservableObject {
         let words = pendingOfferWords
         for (index, word) in words.enumerated() {
             let spread = words.count > 40 ? index / 10 : 0
-            disk.review[word] = ReviewCard(box: 1, due: Shanghai.key(Shanghai.addDays(1 + spread, to: Date())))
+            disk.review[word] = ReviewCard(box: 1, due: LocalDay.key(LocalDay.addDays(1 + spread, to: Date())))
         }
         disk.flags.seenReviewOffer = "accepted"
         save()
@@ -379,7 +373,7 @@ final class AppModel: ObservableObject {
 
     func grade(word: String, grade: ReviewGrade) {
         let hadDue = !dueEntries().isEmpty
-        var card = disk.review[word] ?? ReviewCard(box: 1, due: Shanghai.key(Date()))
+        var card = disk.review[word] ?? ReviewCard(box: 1, due: LocalDay.key(Date()))
         switch grade {
         case .again:
             card.box = 1
@@ -388,7 +382,7 @@ final class AppModel: ObservableObject {
         case .easy:
             card.box = min(6, max(1, card.box) + 2)
         }
-        card.due = Shanghai.key(Shanghai.addDays(intervalDays(box: card.box), to: Date()))
+        card.due = LocalDay.key(LocalDay.addDays(intervalDays(box: card.box), to: Date()))
         disk.review[word] = card
         if hadDue && dueEntries().isEmpty {
             markTodayCounted()
@@ -405,7 +399,7 @@ final class AppModel: ObservableObject {
     // MARK: Quiz
 
     func ensureQuiz() {
-        let key = Shanghai.key(Date())
+        let key = LocalDay.key(Date())
         if quiz?.dateKey == key { return }
         let questions = QuizBuilder.build(
             words: library.words,
@@ -441,7 +435,7 @@ final class AppModel: ObservableObject {
         if session.index + 1 >= session.questions.count {
             let score = session.results.filter { $0 }.count
             if !session.scoreLocked {
-                let key = Shanghai.key(Date())
+                let key = LocalDay.key(Date())
                 if disk.quizHistory[key] == nil {
                     disk.quizHistory[key] = score
                     markTodayCounted()
@@ -483,13 +477,13 @@ final class AppModel: ObservableObject {
     // MARK: Pictures
 
     func ensurePictures() {
-        let key = Shanghai.key(Date())
+        let key = LocalDay.key(Date())
         if pictures?.dateKey == key { return }
         pictures = makePictureRound(dateKey: key, nonce: 0)
     }
 
     func replayPictures() {
-        let key = Shanghai.key(Date())
+        let key = LocalDay.key(Date())
         let nonce = (pictures?.nonce ?? 0) + 1
         pictures = makePictureRound(dateKey: key, nonce: nonce)
     }
@@ -685,7 +679,6 @@ final class AppModel: ObservableObject {
             return
         }
         disk = DiskState()
-        Shanghai.apply(disk.settings.timeZoneChoice)
         dayOffset = 0
         quiz = nil
         pictures = nil
@@ -716,15 +709,6 @@ final class AppModel: ObservableObject {
             }
         }
         return true
-    }
-
-    func setTimeZoneChoice(_ choice: String) {
-        let next = choice == "china" ? "china" : "local"
-        if disk.settings.timeZoneChoice == next { return }
-        disk.settings.timeZoneChoice = next
-        Shanghai.apply(next)
-        save()
-        refreshClock()
     }
 
     func savedEntries(matching query: String) -> [WordEntry] {
@@ -770,7 +754,7 @@ final class AppModel: ObservableObject {
         guard library.isUsable else { return }
         let entry = library.entry(on: Date())
         if disk.seen[entry.word] == nil {
-            disk.seen[entry.word] = Shanghai.key(Date())
+            disk.seen[entry.word] = LocalDay.key(Date())
         }
         if disk.review[entry.word] == nil {
             disk.review[entry.word] = ReviewCard(box: 1, due: tomorrowKey())
@@ -778,6 +762,6 @@ final class AppModel: ObservableObject {
     }
 
     private func tomorrowKey() -> String {
-        Shanghai.key(Shanghai.addDays(1, to: Date()))
+        LocalDay.key(LocalDay.addDays(1, to: Date()))
     }
 }

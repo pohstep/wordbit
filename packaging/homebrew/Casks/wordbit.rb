@@ -1,5 +1,5 @@
 cask "wordbit" do
-  version "2.2.0"
+  version "2.2.1"
 
   sha256 "710a8ad1263e1ebb50a5a52c209d3f90b2835760714984bd1ccbc04df23c091a"
   url "https://github.com/pohstep/wordbit/releases/download/v#{version}/Wordbit-#{version}.dmg"

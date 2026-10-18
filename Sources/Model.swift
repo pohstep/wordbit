@@ -3,28 +3,12 @@ import Foundation
 // MARK: - Calendar
 //
 // The word for a calendar date is the number of days since 2026-01-01, same
-// order as v1. "local" uses the Mac's time zone (the default). "china" uses
-// Asia/Shanghai. Saved dates are plain "yyyy-MM-dd" strings, so they carry over.
+// order as v1, always in the Mac's own time zone. Saved dates are plain
+// "yyyy-MM-dd" strings, so they carry over.
 
-enum Shanghai {
-    /// "local" or "china". Anything else is treated as local.
-    private static var choice: String = "local"
-
-    static func apply(_ choice: String) {
-        if choice == "china" {
-            self.choice = "china"
-        } else {
-            self.choice = "local"
-        }
-    }
-
+enum LocalDay {
     static var timeZone: TimeZone {
-        if choice == "china" {
-            if let zone = TimeZone(identifier: "Asia/Shanghai") {
-                return zone
-            }
-        }
-        return TimeZone.current
+        TimeZone.current
     }
 
     static var calendar: Calendar {
@@ -46,7 +30,7 @@ enum Shanghai {
         calendar.startOfDay(for: date)
     }
 
-    /// Days from 2026-01-01 in the active time zone. 1 Jan 2026 is 0, matching v1.
+    /// Days from 2026-01-01 in the Mac's time zone. 1 Jan 2026 is 0, matching v1.
     static func dayNumber(_ date: Date) -> Int {
         calendar.dateComponents([.day], from: startOfDay(epoch), to: startOfDay(date)).day ?? 0
     }
@@ -163,7 +147,7 @@ final class WordLibrary {
     func index(on date: Date) -> Int {
         let count = words.count
         guard count > 0 else { return 0 }
-        let day = Shanghai.dayNumber(date)
+        let day = LocalDay.dayNumber(date)
         return ((day % count) + count) % count
     }
 
