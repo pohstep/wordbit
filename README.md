@@ -148,6 +148,10 @@ On the first day, Review has nothing due yet and Saved is empty. Both say **Noth
 
 ### Settings
 
+<p align="center">
+  <img src="docs/settings.png" width="720" alt="Settings: Chinese meanings, Time zone (My time zone or China time), Voice, and Daily reminder with its time picker, Launch at login">
+</p>
+
 **Time zone** is **My time zone** or **China time**. **Daily reminder** is off until you turn it on. The time picker replaces the old fixed 8:00, and it uses the clock on this Mac. If a reminder never arrives, allow Wordbit in **System Settings → Notifications**.
 
 ## Privacy
