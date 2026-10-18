@@ -166,18 +166,17 @@ On the first day, Review has nothing due yet and Saved is empty. Both say **Noth
 ### Settings
 
 <p align="center">
-  <img src="docs/settings.png" width="720" alt="Settings: Chinese meanings, Time zone (My time zone or China time), Voice, and Daily reminder with its time picker, Launch at login">
+  <img src="docs/settings-en.png" width="360" alt="Settings in English: Language set to English, Chinese meanings, Time zone (My time zone or China time), and Voice">
+  <img src="docs/settings-zh.png" width="360" alt="设置（简体中文）：语言为简体中文，中文释义、时区（本机时区或中国时间）和语音">
 </p>
+
+Settings in English and in 简体中文. Changing **Language** switches the whole panel straight away.
 
 <p align="center">
-  <img src="docs/settings-en.svg" width="360" alt="Screenshot placeholder: Settings in English, Language set to Automatic (follow Mac), and About with the version, Check for updates and Reset progress">
+  <img src="docs/about.png" width="360" alt="About: Wordbit 2.2.0, who made it, data credits, and the buttons Show data licences, Check for updates, Reset progress and Quit Wordbit">
 </p>
 
-<p align="center">
-  <img src="docs/settings-zh.svg" width="360" alt="截图占位：设置为简体中文，语言为自动（跟随 Mac），关于里有版本、检查更新和重置进度">
-</p>
-
-The two panels above are placeholders for the 2.2 Settings screen in English and in 简体中文, including **Language** and **About**.
+**About**, at the bottom of Settings, shows the version and has **Check for updates**, **Reset progress** and **Quit Wordbit**.
 
 **Language** is **Automatic (follow Mac)**, **English**, or **简体中文**. Automatic uses Simplified Chinese when this Mac's first language is Chinese, and English otherwise. Changing it updates the panel immediately. The words stay English, and the meanings are in Chinese today.
 
@@ -266,7 +265,7 @@ packaging/   Homebrew cask (packaging/homebrew/Casks/wordbit.rb)
 - `install.sh` compiles with `-target arm64-apple-macos13` and `-target x86_64-apple-macos13`, joins the two with `lipo -create`, and signs "ad hoc" (no Apple developer account). `scripts/make-dmg.sh` puts that app in a disk image with a shortcut to Applications, made with `hdiutil`.
 - The app ID is `com.pohstep.wordbit`.
 - Interface strings live in `Sources/L10nEn.swift` (English, the source language) and `Sources/L10nZhHans.swift` (Simplified Chinese). A new interface language is another file that covers every `L10nKey`, plus a line in `InterfaceLanguage`. The English words and their Chinese meanings are not in those files. The meanings are in Chinese today.
-- The recipe at `packaging/homebrew/Casks/wordbit.rb` is version 2.2.0. Its SHA-256 line is filled in when `Wordbit-2.2.0.dmg` is published.
+- The recipe at `packaging/homebrew/Casks/wordbit.rb` is version 2.2.0. Its SHA-256 matches `Wordbit-2.2.0.dmg` on the GitHub release.
 - Launch flags are `--check`, `--show` and `--make-iconset`. There is no screenshot render mode.
 
 ## Changelog
