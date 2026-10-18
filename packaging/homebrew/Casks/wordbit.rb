@@ -1,9 +1,7 @@
 cask "wordbit" do
   version "2.1.0"
 
-  # url and sha256 are placeholders until the v2.1.0 release .dmg exists.
-  # Replace sha256 with: shasum -a 256 Wordbit-2.1.0.dmg
-  sha256 "PLACEHOLDER_SHA256_OF_WORDIT_2_1_0_DMG"
+  sha256 "14043ea0dad35a25752022083c632457bf8b94fb8e36b34d2af4d16e89de6100"
   url "https://github.com/pohstep/wordbit/releases/download/v#{version}/Wordbit-#{version}.dmg"
 
   name "Wordbit"
