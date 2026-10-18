@@ -33,7 +33,11 @@
 Wordbit is a small native Mac app written in Swift. There is no account, no ads and no tracking.
 
 <p align="center">
-  <img src="docs/demo.gif" width="720" alt="Animation: moving through Today, Review, Quiz and the Pictures game in Wordbit">
+  <img src="docs/demo-tabs.gif" width="720" alt="Animation: a walk through all six tabs: Today, Review, Quiz, Pictures, Saved and Settings">
+</p>
+
+<p align="center">
+  <a href="docs/demo-tabs.mp4">Watch the full video (MP4)</a>
 </p>
 
 ## Download and install
@@ -122,7 +126,7 @@ The Wordbit code is MIT licensed (see [LICENSE](LICENSE)). The word lists come f
 | Other pronunciations | [CMU Pronouncing Dictionary](https://github.com/cmusphinx/cmudict) | BSD-style |
 | Chinese meanings | [ECDICT](https://github.com/skywind3000/ECDICT) by Linwei, shortened. Chinese meanings checked by AI — corrections welcome | MIT |
 | Picture-game pictures | Apple Color Emoji, drawn by your Mac when the app runs. No emoji images are included in this repository or the app | Part of macOS |
-| Promo images in this README | Promo images rendered with Noto Emoji, Apache 2.0. The screenshots are illustrative: the app itself shows Apple Color Emoji | [Apache 2.0](https://github.com/googlefonts/noto-emoji) |
+| Promo images and video in this README | Promo images rendered with Noto Emoji, Apache 2.0. The screenshots and video are illustrative: the app itself shows Apple Color Emoji | [Apache 2.0](https://github.com/googlefonts/noto-emoji) |
 | The "W" on the app icon | Drawn from the [Cinzel](https://github.com/NDISCOVER/Cinzel) typeface by Natanael Gama | [SIL Open Font License 1.1](https://openfontlicense.org) |
 
 Because some word fields are CC BY-SA 4.0, if you reuse `Resources/words.json`, keep the credit and share those fields under the same licence.
